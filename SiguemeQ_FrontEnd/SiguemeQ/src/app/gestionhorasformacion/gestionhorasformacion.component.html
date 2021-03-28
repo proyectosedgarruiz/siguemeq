@@ -1,0 +1,123 @@
+<div class="container-body">
+
+    <br>
+    <br><br><br>
+
+    <!--<div [blockClass]="'box-list m-t-15'" class="tarjeta">-->
+    <div class="tarjeta" *ngIf="displayListHorasFormacion">
+        <div class="long-title">
+            <h3>Gestión de HorasFormacion</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <dx-button id="button" class="rounded mx-auto" text="Crear Horas Formación" type="success"
+                    (click)="showPanel('C',0)"></dx-button>
+            </div>
+        </div>
+    </div>
+    <!--</div>-->
+    <!---->
+
+
+    <!--Inicio Grilla HorasFormacion-->
+
+    <div class="tarjeta" *ngIf="displayListHorasFormacion">
+        <div *ngIf="displayListHorasFormacion">
+
+            <dx-data-grid id="gridContainer" [dataSource]="horasformacionsLista" keyExpr="hor_id" showBorders="true"
+                [columnAutoWidth]="true" [rowAlternationEnabled]="true" ng-selected="true"
+                [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                [showBorders]="true">
+
+                <dxo-editing mode="form"></dxo-editing>
+                <dxi-column caption="Operaciones" cellTemplate="accionCellTemplate" alignment="center">
+                </dxi-column>
+
+
+                <dxi-column dataField="hor_id" caption="Id"></dxi-column>
+                <dxi-column dataField="hor_nombre" caption="Nombre"></dxi-column>
+
+                <dxo-export [enabled]="true" fileName="HorasFormacion"></dxo-export>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-search-panel [visible]="true" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-state-storing [enabled]="true" type="localStorage" storageKey="storage">
+                </dxo-state-storing>
+
+                <dxo-remote-operations [sorting]="true" [paging]="true">
+                </dxo-remote-operations>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 40]"></dxo-pager>
+                <dxo-summary>
+                    <dxi-total-item column="hor_id" summaryType="count" displayFormat="Cantidad: {0}">
+                    </dxi-total-item>
+                </dxo-summary>
+
+                <div *dxTemplate="let d of 'accionCellTemplate'">
+                    <div class="button-cell">
+
+                        <dx-button id="button" class="rounded mx-auto" text="Actualizar" type="success"
+                            (click)="showPanel('U', d.data.hor_id)"></dx-button>
+
+                            <dx-button id="button" class="rounded mx-auto" text="Eliminar" type="danger"
+                            (click)="showPanel('E', d.data.hor_id)"></dx-button>
+
+                        <i style="font-size:20px; cursor:pointer;" class="icofont icofont-law-document"
+                            placement="right" ngbTooltip="Actualizar" (click)="showPanel('U', d.data.hor_id)"></i>
+
+                    </div>
+                </div>
+            </dx-data-grid>
+
+
+        </div>
+    </div>
+
+    <!-- Fin Grilla de HorasFormacion-->
+
+    <!--Formulario Creacion de HorasFormacion-->
+    <div class="tarjeta" *ngIf="displayCrearHorasFormacion">
+        <div *ngIf="displayCrearHorasFormacion">
+            <form #formHorasFormacion="ngForm" (ngSubmit)="onSubmitHorasFormacion(formHorasFormacion.valid)">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Nombre:</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" 
+                                    name="nombre" #nombre="ngModel" [(ngModel)]="horasformacion.hor_nombre"
+                                    placeholder="Por favor ingrese el Nombre" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary m-b-0">Guardar</button>
+                        <button type="button" (click)="showPanel('V',0)" class="btn btn-primary m-b-0">Volver</button>
+                    </div>
+                </div>
+
+
+                <div class="divTableRow">
+                    <div class="divTableCell">
+                      <div *ngIf="errorLabel" class="alert alert-danger api-response-alert2 col-sm-3" role="alert">
+                        {{errorText}}
+                      </div>
+            
+                    </div>
+                  </div>
+            </form>
+        </div>
+    </div>
+    <!--Fin Formulario Creacion de HorasFormacion-->
+
+</div>
+
+<!-- Fin Body-->

@@ -1,0 +1,13 @@
+
+
+<!--Módulo de Administrador-->
+<div *ngIf="componenteactivo == 'app-gestionusuarios'" >
+    <app-gestionusuarios [publicas]="publicas"></app-gestionusuarios>
+</div>
+<!--Se encuentran pendiente por implementar, gestion de roles, gestión de entidades-->
+
+
+<!--Módulo de PQRS-->
+<div *ngIf="componenteactivo == 'app-recepcionpqrs'">
+    <app-recepcionpqrs></app-recepcionpqrs>
+</div>

@@ -1,0 +1,60 @@
+
+<div class="verticalcenter">
+<div class="container py-5"  *ngIf="VisualizarLogin">
+  <div class="container-login100">
+    <div class="login100-more" style="background-image: url('assets/bg-01.jpg');"></div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-12 text-center mb-4">
+          <img src="assets/alcaldiac_logo.png" >
+        </div>
+        <div class="row">
+          <div class="col-md-6 mx-auto">
+            <!-- form card login -->
+            <div class="card rounded-0" id="login-form">
+              <div class="card-header">
+                <h3 class="mb-0">Autenticación </h3>
+              </div>
+              <div class="card-body">
+
+
+                <form #formLogin="ngForm" class="md-float-material" (ngSubmit)="onLogin()">
+                  <div class="form-group">
+                    <label for="uname1">Usuario</label>
+                    <input [(ngModel)]="_loginForm.username" type="text" class="form-control form-control-lg rounded-0"
+                      name="username" #usernme="ngModel" required>
+  
+                  </div>
+                  <div class="form-group">
+                    <label>Clave</label>
+                    <input [(ngModel)]="_loginForm.password" type="password"
+                      class="form-control form-control-lg rounded-0" name="password" #password="ngModel" required>
+  
+                  </div>
+                  <div>
+                    <label class="custom-control custom-checkbox">
+                      <div class="col-md-12 text-center mb-4">
+                      <img src="assets/LogoSiguemeQ.png" class="img-responsive" width="100%" height="100%">
+                    </div>
+                    </label>
+                  
+                  </div>
+                  <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Ingresar</button>
+                </form>
+
+             
+              </div>
+            </div>
+            <!-- /form card login end-->
+  
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+  
+  
+  

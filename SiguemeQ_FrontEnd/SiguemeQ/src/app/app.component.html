@@ -1,0 +1,12 @@
+<div class="row" style="width: 100%;padding-left: 40px;padding-right: 20px; padding-top: 20px;">
+  <div class="col"  >
+
+    
+ 
+<app-autenticacion *ngIf="VisualizarLogin" [publicas]="publicas"  (usuarioAutorizado)="usuarioAutorizado($event)">
+</app-autenticacion>
+
+<app-dashboard *ngIf="VisualizarDashboard" [publicas]="publicas" (cerrar)="cerrarsesion($event)"></app-dashboard>
+   
+  </div>
+</div>

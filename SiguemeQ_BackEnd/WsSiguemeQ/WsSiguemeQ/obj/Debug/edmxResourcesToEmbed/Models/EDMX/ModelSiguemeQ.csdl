@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SiguemeQ_DesarrolloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DPrivilegioRol">
+    <Key>
+      <PropertyRef Name="idPrivilegioRol" />
+    </Key>
+    <Property Name="idPrivilegioRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idPrivilegio" Type="Int32" Nullable="false" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DRoles" Relationship="Self.FK_PrivilegioRol_Roles" FromRole="DPrivilegioRol" ToRole="DRoles" />
+    <NavigationProperty Name="DPrivilegios" Relationship="SiguemeQ_DesarrolloModel.FK_PrivilegioRol_Privilegios" FromRole="DPrivilegioRol" ToRole="DPrivilegios" />
+  </EntityType>
+  <EntityType Name="DRoles">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="DPrivilegioRol" Relationship="Self.FK_PrivilegioRol_Roles" FromRole="DRoles" ToRole="DPrivilegioRol" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Roles" FromRole="DRoles" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="DServicio">
+    <Key>
+      <PropertyRef Name="idServicio" />
+    </Key>
+    <Property Name="idServicio" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="codigoServicio" Type="Int32" />
+    <NavigationProperty Name="Entidad_Servicio" Relationship="Self.FK_Entidad_Servicio_DServicio" FromRole="DServicio" ToRole="Entidad_Servicio" />
+  </EntityType>
+  <EntityType Name="Entidad">
+    <Key>
+      <PropertyRef Name="idEntidad" />
+    </Key>
+    <Property Name="idEntidad" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEntidadRelacionada" Type="Int64" />
+    <Property Name="idTipoIdentificacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="numeroIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="digitoVerificacion" Type="Int32" Nullable="false" />
+    <Property Name="codigoHabilitacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombreEntidad" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="idNaturalezaJuridica" Type="Int32" Nullable="false" />
+    <Property Name="correoElectronico" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="direccionNoUrbana" Type="Boolean" />
+    <Property Name="idLocalidadDireccion" Type="Int32" />
+    <Property Name="idBarrioDireccion" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Name="idUpzDireccion" Type="Int32" />
+    <Property Name="fechaInscripcionRUH" Type="DateTime" Precision="0" />
+    <Property Name="idTipoPrestador" Type="Int32" />
+    <Property Name="idTipoNitComun" Type="Int32" />
+    <Property Name="fechaCreado" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechaActualizado" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="usrCreado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usrModificado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Entidad_Servicio" Relationship="Self.FK_Entidad_Servicio_Entidad" FromRole="Entidad" ToRole="Entidad_Servicio" />
+  </EntityType>
+  <EntityType Name="Entidad_Servicio">
+    <Key>
+      <PropertyRef Name="idEntidadServicio" />
+    </Key>
+    <Property Name="idEntidadServicio" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEntidad" Type="Int64" Nullable="false" />
+    <Property Name="idServicio" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DServicio" Relationship="Self.FK_Entidad_Servicio_DServicio" FromRole="Entidad_Servicio" ToRole="DServicio" />
+    <NavigationProperty Name="Entidad" Relationship="Self.FK_Entidad_Servicio_Entidad" FromRole="Entidad_Servicio" ToRole="Entidad" />
+    <NavigationProperty Name="Queja" Relationship="Self.FK_Queja_Entidad_Servicio" FromRole="Entidad_Servicio" ToRole="Queja" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idPersona" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTipoIdentificacion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="numeroIdentificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="digitoVerificacion" Type="Int32" />
+    <Property Name="primerNombre" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="primerApellido" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="nombresApellidos" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="idTipoDireccion" Type="Int32" />
+    <Property Name="idLocalidad" Type="Int32" />
+    <Property Name="idBarrio" Type="String" MaxLength="7" FixedLength="true" Unicode="true" />
+    <Property Name="idUpz" Type="Int32" Nullable="false" />
+    <Property Name="telefono1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="correoElectronico" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="fechaCreado" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fechaModificado" Type="DateTime" Precision="3" />
+    <Property Name="usrCreado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usrModificado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Queja" Relationship="Self.FK_Queja_Persona" FromRole="Persona" ToRole="Queja" />
+    <NavigationProperty Name="Queja1" Relationship="Self.FK_Queja_Persona1" FromRole="Persona" ToRole="Queja" />
+  </EntityType>
+  <EntityType Name="Queja">
+    <Key>
+      <PropertyRef Name="idQueja" />
+    </Key>
+    <Property Name="idQueja" Type="Int64" Nullable="false" />
+    <Property Name="idTipoSolicitud" Type="Int32" />
+    <Property Name="numeroRadicadoQueja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fechaRadicadoQueja" Type="DateTime" Precision="0" />
+    <Property Name="fechaLimiteRespuesta" Type="DateTime" Precision="0" />
+    <Property Name="idEntidadRemitente" Type="Int32" />
+    <Property Name="numeroRadicadoAtencionUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="idTipoRecepcionQueja" Type="Int32" />
+    <Property Name="idPersonaQuejoso" Type="Int64" />
+    <Property Name="idPersonaAfectado" Type="Int64" />
+    <Property Name="idEntidadServicioInvolucrada" Type="Int64" />
+    <Property Name="motivoQueja" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="radicadosRelacionados" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="idPalabrasClaves" Type="Int32" />
+    <Property Name="idCaracteristicasEspeciales" Type="Int32" Nullable="false" />
+    <Property Name="idTipoDireccionamiento" Type="Int32" />
+    <Property Name="idGrupoEntrega" Type="Int32" />
+    <Property Name="foliosEntrega" Type="Int32" />
+    <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
+    <Property Name="idEstadoQueja" Type="Int32" />
+    <Property Name="fechaCreado" Type="DateTime" Precision="3" />
+    <Property Name="fechaActualizado" Type="DateTime" Precision="3" />
+    <Property Name="usrCreado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="usrModificado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Entidad_Servicio" Relationship="Self.FK_Queja_Entidad_Servicio" FromRole="Queja" ToRole="Entidad_Servicio" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_Queja_Persona" FromRole="Queja" ToRole="Persona" />
+    <NavigationProperty Name="Persona1" Relationship="Self.FK_Queja_Persona1" FromRole="Queja" ToRole="Persona" />
+    <NavigationProperty Name="Visita" Relationship="Self.FK_Visita_Queja" FromRole="Queja" ToRole="Visita" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+    <Property Name="fechaCreado" Type="DateTime" Precision="3" />
+    <Property Name="fechaActualizado" Type="DateTime" Precision="3" />
+    <Property Name="usrCreado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="usrModificado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="idRol" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DRoles" Relationship="Self.FK_Usuarios_Roles" FromRole="Usuarios" ToRole="DRoles" />
+  </EntityType>
+  <EntityType Name="Visita">
+    <Key>
+      <PropertyRef Name="idVisita" />
+    </Key>
+    <Property Name="idVisita" Type="Int64" Nullable="false" />
+    <Property Name="idQueja" Type="Int64" />
+    <Property Name="fechaVisita" Type="DateTime" Precision="0" />
+    <Property Name="idEstadoVisita" Type="Int32" />
+    <Property Name="fechaEntregaVisita" Type="DateTime" Precision="0" />
+    <Property Name="fechaReciboVisita" Type="DateTime" Precision="0" />
+    <Property Name="idCoordinador" Type="Int32" />
+    <Property Name="foliosResultadoVisita" Type="Int32" />
+    <Property Name="anexosResultadoVisita" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="idResultadoVisita" Type="Int32" />
+    <Property Name="idTipoMedida" Type="Int32" />
+    <Property Name="idImposicionMedidaREPS" Type="Int32" />
+    <NavigationProperty Name="Queja" Relationship="Self.FK_Visita_Queja" FromRole="Visita" ToRole="Queja" />
+  </EntityType>
+  <EntityType Name="DBarrio">
+    <Key>
+      <PropertyRef Name="idBarrio" />
+      <PropertyRef Name="idUpz" />
+      <PropertyRef Name="descripcionBarrio" />
+      <PropertyRef Name="activoBarrio" />
+    </Key>
+    <Property Name="idBarrio" Type="String" MaxLength="7" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="idUpz" Type="Int32" Nullable="false" />
+    <Property Name="descripcionBarrio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activoBarrio" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DFechaFestiva">
+    <Key>
+      <PropertyRef Name="fechaFestivo" />
+      <PropertyRef Name="anio" />
+      <PropertyRef Name="activo" />
+    </Key>
+    <Property Name="fechaFestivo" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="anio" Type="Int16" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DLocalidad">
+    <Key>
+      <PropertyRef Name="idLocalidad" />
+      <PropertyRef Name="descripcionLocalidad" />
+      <PropertyRef Name="activoLocalidad" />
+    </Key>
+    <Property Name="idLocalidad" Type="Int32" Nullable="false" />
+    <Property Name="descripcionLocalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activoLocalidad" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DTipoIdentificacion">
+    <Key>
+      <PropertyRef Name="idTipoIdentificacion" />
+      <PropertyRef Name="descripcion" />
+      <PropertyRef Name="activo" />
+    </Key>
+    <Property Name="idTipoIdentificacion" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DTipoQueja">
+    <Key>
+      <PropertyRef Name="idTipoQueja" />
+    </Key>
+    <Property Name="idTipoQueja" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DUpz">
+    <Key>
+      <PropertyRef Name="idUpz" />
+      <PropertyRef Name="idLocalidad" />
+      <PropertyRef Name="descripcionUpz" />
+      <PropertyRef Name="activoUpz" />
+    </Key>
+    <Property Name="idUpz" Type="Int32" Nullable="false" />
+    <Property Name="idLocalidad" Type="Int32" Nullable="false" />
+    <Property Name="descripcionUpz" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activoUpz" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_PrivilegioRol_Roles">
+    <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
+    <End Role="DPrivilegioRol" Type="Self.DPrivilegioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DRoles">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="DPrivilegioRol">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Roles">
+    <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DRoles">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entidad_Servicio_DServicio">
+    <End Role="DServicio" Type="Self.DServicio" Multiplicity="1" />
+    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DServicio">
+        <PropertyRef Name="idServicio" />
+      </Principal>
+      <Dependent Role="Entidad_Servicio">
+        <PropertyRef Name="idServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entidad_Servicio_Entidad">
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad">
+        <PropertyRef Name="idEntidad" />
+      </Principal>
+      <Dependent Role="Entidad_Servicio">
+        <PropertyRef Name="idEntidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Entidad_Servicio">
+    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad_Servicio">
+        <PropertyRef Name="idEntidadServicio" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="idEntidadServicioInvolucrada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="idPersonaQuejoso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Persona1">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="idPersonaAfectado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visita_Queja">
+    <End Role="Queja" Type="Self.Queja" Multiplicity="0..1" />
+    <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Queja">
+        <PropertyRef Name="idQueja" />
+      </Principal>
+      <Dependent Role="Visita">
+        <PropertyRef Name="idQueja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SiguemeQ_DesarrolloEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DPrivilegioRol" EntityType="Self.DPrivilegioRol" />
+    <EntitySet Name="DRoles" EntityType="Self.DRoles" />
+    <EntitySet Name="DServicio" EntityType="Self.DServicio" />
+    <EntitySet Name="Entidad" EntityType="Self.Entidad" />
+    <EntitySet Name="Entidad_Servicio" EntityType="Self.Entidad_Servicio" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Queja" EntityType="Self.Queja" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <EntitySet Name="Visita" EntityType="Self.Visita" />
+    <EntitySet Name="DBarrio" EntityType="Self.DBarrio" />
+    <EntitySet Name="DFechaFestiva" EntityType="Self.DFechaFestiva" />
+    <EntitySet Name="DLocalidad" EntityType="Self.DLocalidad" />
+    <EntitySet Name="DTipoIdentificacion" EntityType="Self.DTipoIdentificacion" />
+    <EntitySet Name="DTipoQueja" EntityType="Self.DTipoQueja" />
+    <EntitySet Name="DUpz" EntityType="Self.DUpz" />
+    <AssociationSet Name="FK_PrivilegioRol_Roles" Association="Self.FK_PrivilegioRol_Roles">
+      <End Role="DRoles" EntitySet="DRoles" />
+      <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
+      <End Role="DRoles" EntitySet="DRoles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entidad_Servicio_DServicio" Association="Self.FK_Entidad_Servicio_DServicio">
+      <End Role="DServicio" EntitySet="DServicio" />
+      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entidad_Servicio_Entidad" Association="Self.FK_Entidad_Servicio_Entidad">
+      <End Role="Entidad" EntitySet="Entidad" />
+      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Entidad_Servicio" Association="Self.FK_Queja_Entidad_Servicio">
+      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Persona" Association="Self.FK_Queja_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Persona1" Association="Self.FK_Queja_Persona1">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visita_Queja" Association="Self.FK_Visita_Queja">
+      <End Role="Queja" EntitySet="Queja" />
+      <End Role="Visita" EntitySet="Visita" />
+    </AssociationSet>
+    <FunctionImport Name="SP_ADD_PRIVILEGIOROL">
+      <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ADD_ROL">
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_ADD_USUARIO">
+      <Parameter Name="idUsuario" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="usrCreado" Mode="In" Type="String" />
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FIND_PRIVILEGIOROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_PRIVILEGIOROL_Result)">
+      <Parameter Name="idPrivilegioRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FIND_ROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_ROL_Result)">
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FIND_USUARIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LIST_PRIVILEGIOROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOROL_Result)" />
+    <FunctionImport Name="SP_LIST_ROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_ROL_Result)" />
+    <FunctionImport Name="SP_UPD_PRIVILEGIOROL">
+      <Parameter Name="idPrivilegioRol" Mode="In" Type="Int32" />
+      <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPD_ROL">
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LIST_USUARIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result)" />
+    <FunctionImport Name="SP_FIND_USUARIO_AUTORIZADO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_AUTORIZADO_Result)">
+      <Parameter Name="idUsuario" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="DModulos" EntityType="SiguemeQ_DesarrolloModel.DModulos" />
+    <EntitySet Name="DPrivilegios" EntityType="SiguemeQ_DesarrolloModel.DPrivilegios" />
+    <AssociationSet Name="FK_PrivilegioRol_Privilegios" Association="SiguemeQ_DesarrolloModel.FK_PrivilegioRol_Privilegios">
+      <End Role="DPrivilegios" EntitySet="DPrivilegios" />
+      <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
+    </AssociationSet>
+    <FunctionImport Name="SP_ADD_PRIVILEGIO">
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="componente" Mode="In" Type="String" />
+      <Parameter Name="idModulo" Mode="In" Type="Int32" />
+      <Parameter Name="orden" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_LIST_PRIVILEGIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIO_Result)" />
+    <FunctionImport Name="SP_LIST_PRIVILEGIOSBYROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOSBYROL_Result)">
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPD_PRIVILEGIO">
+      <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="componente" Mode="In" Type="String" />
+      <Parameter Name="idModulo" Mode="In" Type="Int32" />
+      <Parameter Name="orden" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPD_CLAVE_USUARIO">
+      <Parameter Name="idUsuario" Mode="In" Type="String" />
+      <Parameter Name="clave" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SP_UPD_USUARIO">
+      <Parameter Name="idUsuario" Mode="In" Type="String" />
+      <Parameter Name="password" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+      <Parameter Name="usrModificado" Mode="In" Type="String" />
+      <Parameter Name="idRol" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="DTipoSolicitud" EntityType="SiguemeQ_DesarrolloModel.DTipoSolicitud" />
+    <FunctionImport Name="SP_LIST_TIPOSOLICITUD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_TIPOSOLICITUD_Result)" />
+    <FunctionImport Name="SP_LIST_ENTIDAD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result)" />
+  </EntityContainer>
+  <ComplexType Name="SP_FIND_PRIVILEGIOROL_Result">
+    <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
+    <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_FIND_ROL_Result">
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SP_FIND_USUARIO_Result">
+    <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="fechaCreado" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="fechaActualizado" Nullable="true" Precision="23" />
+    <Property Type="String" Name="usrCreado" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_LIST_PRIVILEGIOROL_Result">
+    <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
+    <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
+    <Property Type="String" Name="descripcionPrivilegio" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SP_LIST_ROL_Result">
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SP_LIST_USUARIO_Result">
+    <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="fechaCreado" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="fechaActualizado" Nullable="true" Precision="23" />
+    <Property Type="String" Name="usrCreado" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SP_FIND_USUARIO_AUTORIZADO_Result">
+    <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+    <Property Type="DateTime" Name="fechaCreado" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="fechaActualizado" Nullable="true" Precision="23" />
+    <Property Type="String" Name="usrCreado" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <EntityType Name="DModulos">
+    <Key>
+      <PropertyRef Name="idModulo" />
+    </Key>
+    <Property Name="idModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DPrivilegios">
+    <Key>
+      <PropertyRef Name="idPrivilegio" />
+    </Key>
+    <Property Name="idPrivilegio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="componente" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="idModulo" Type="Int32" Nullable="false" />
+    <Property Name="orden" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DPrivilegioRol" Relationship="SiguemeQ_DesarrolloModel.FK_PrivilegioRol_Privilegios" FromRole="DPrivilegios" ToRole="DPrivilegioRol" />
+  </EntityType>
+  <Association Name="FK_PrivilegioRol_Privilegios">
+    <End Type="SiguemeQ_DesarrolloModel.DPrivilegios" Role="DPrivilegios" Multiplicity="1" />
+    <End Type="SiguemeQ_DesarrolloModel.DPrivilegioRol" Role="DPrivilegioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DPrivilegios">
+        <PropertyRef Name="idPrivilegio" />
+      </Principal>
+      <Dependent Role="DPrivilegioRol">
+        <PropertyRef Name="idPrivilegio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="SP_LIST_PRIVILEGIO_Result">
+    <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="componente" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="idModulo" Nullable="false" />
+    <Property Type="String" Name="descripcionModulo" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="orden" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="SP_LIST_PRIVILEGIOSBYROL_Result">
+    <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
+    <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
+    <Property Type="String" Name="descripcionPrivilegio" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="idRol" Nullable="false" />
+    <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="idModulo" Nullable="false" />
+    <Property Type="String" Name="descripcionModulo" Nullable="false" MaxLength="255" />
+    <Property Type="Int32" Name="orden" Nullable="false" />
+    <Property Type="String" Name="componente" Nullable="false" MaxLength="256" />
+  </ComplexType>
+  <EntityType Name="DTipoSolicitud">
+    <Key>
+      <PropertyRef Name="idTipoSolicitud" />
+    </Key>
+    <Property Name="idTipoSolicitud" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+  </EntityType>
+  <ComplexType Name="SP_LIST_TIPOSOLICITUD_Result">
+    <Property Type="Int32" Name="idTipoSolicitud" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+  </ComplexType>
+  <ComplexType Name="SP_LIST_ENTIDAD_Result">
+    <Property Type="Int64" Name="idEntidad" Nullable="false" />
+    <Property Type="String" Name="nombreEntidad" Nullable="false" MaxLength="255" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,112 @@
+<div>
+    <div class="cent">
+        <table width="100%">
+            <tr>
+                <td align="right">
+                    <h4><b>Recepción de PQRS</b></h4>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+
+    <br>
+    <div class="contenedorprincipalencuesta">
+        <form name="myForm">
+
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="tiposolicitud">Tipo de Solicitud <font COLOR="red">*</font> :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.idTipoSolicitud" style="text-transform: uppercase;"
+                        id="tiposolicitud" >
+                        <option *ngFor="let fila of selectTipoSolicitud" value="{{fila.idTipoSolicitud}}">{{fila.descripcion}}
+                        </option>
+        
+        
+                      </select>
+                    </div>
+                </div>
+           
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="numeroradicadoqueja">Número Radicado <font COLOR="red">*</font>
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.numeroRadicadoQueja" class="form-control" id="numeroradicadoqueja"
+                            placeholder="Ingrese el número de radicado" style="text-transform: uppercase;">
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="labeld" for="fecharadicadoqueja">Fecha Radicado <font COLOR="red">*</font>
+                        :</label>
+        
+                    <input  required type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.fechaRadicadoQueja"
+                      class="form-control" id="fecharadicadoqueja" placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy"
+                      is-open="opened" close-text="Close"  >
+        
+                     
+                  </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                      <label class="labeld" for="fechalimiterespuesta">Fecha Límite Respuesta <font COLOR="red">*</font>
+                          :</label>
+          
+                      <input  required type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.fechaLimiteRespuesta"
+                        class="form-control" id="fechalimiterespuesta" placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy"
+                        is-open="opened" close-text="Close"  >
+          
+                       
+                    </div>
+                  </div>
+                
+        
+              </div>
+
+
+
+              <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="entidadremitente">Entidad Remitente <font COLOR="red">*</font> :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.idEntidadRemitente" style="text-transform: uppercase;"
+                        id="entidadremitente" >
+                        <option *ngFor="let fila of selectEntidad" value="{{fila.idEntidad}}">{{fila.nombreEntidad}}
+                        </option>
+        
+        
+                      </select>
+                    </div>
+                </div>
+           
+               
+            </div>
+
+            <div>
+                <table width="100%">
+
+                    <tr>
+
+                        <td align="center" width="10%">
+                            <button class="btn btn-info active"
+                                style="padding-left: 20px; padding-right: 20px; ">Guardar</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+        </form>
+    </div>
+
+</div>

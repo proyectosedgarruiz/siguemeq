@@ -1,0 +1,187 @@
+<div class="container-body">
+
+    <br>
+    <div class="tarjeta">
+        <div class="long-title" *ngIf="!VisualizarEditarEncuesta">
+            <h3>Sábana de Solicitudes por Convocatoria</h3>
+        </div>
+
+        <div class="tarjeta" *ngIf="!VisualizarEditarEncuesta">
+            <div>
+                <div class="form-row">
+                    <label class="labeld" for="dia">Seleccione como desea consultar la sábana de Solicitudes por
+                        Convocatoria :</label>
+                    <div class="col">
+                        <div class="form-group">
+                            <input type="radio" value="1" name="tiposabana" [(ngModel)]="tiposabana"
+                                style="background-color:white; color:black; font-weight: bold; width: 20px; height: 20px;"
+                                (change)="VisualizarFechas=false; VisualizarConvocatorias=false;"> Todos
+                            <label></label>
+                            <input type="radio" value="2" name="tiposabana" [(ngModel)]="tiposabana"
+                                style="background-color:white; color:black; font-weight: bold; width: 20px; height: 20px;"
+                                (change)="VisualizarFechas=true; VisualizarConvocatorias=false; AsignarFechasIniciales()">
+                            Rango de Fechas
+
+
+                            <div class="form-row" *ngIf="VisualizarFechas">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="labeld" for="dia">Fecha Inicial :</label>
+                                        <input required type="date" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="fechainicial" class="form-control" id="fechainicial"
+                                            placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy" is-open="opened"
+                                            close-text="Close">
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="labeld" for="dia">Fecha Final :</label>
+                                        <input required type="date" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="fechafinal" class="form-control" id="fechafinal"
+                                            placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy" is-open="opened"
+                                            close-text="Close">
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <label></label>
+                            <input type="radio" value="3" name="tiposabana" [(ngModel)]="tiposabana"
+                                style="background-color:white; color:black; font-weight: bold; width: 20px; height: 20px;"
+                                (change)="VisualizarConvocatorias=true; VisualizarFechas=false"> Convocatoria
+
+
+                            <div class="form-row" *ngIf="VisualizarConvocatorias">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="labeld" for="dia">Convocatoria :</label>
+                                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="con_id">
+                                            <option *ngFor="let fila of selectConvocatoria" value="{{fila.con_id}}">
+                                                {{fila.con_nombre}}
+                                            </option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-info active" (click)="Consultarsabana()" style="padding-left: 20px;">Consultar
+                    Sábana de Solicitudes por Convocatoria</button>
+            </div>
+            <br>
+            <br>
+
+            <div *ngIf="VisualizarSabana">
+                <dx-data-grid id="gridContainer" [dataSource]="selectEncuestas" keyExpr="clm_id" showBorders="true"
+                    [columnAutoWidth]="true" [rowAlternationEnabled]="true" ng-selected="true"
+                    [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                    [showBorders]="true">
+
+                    <dxi-column caption="Operaciones" cellTemplate="accionCellTemplate" alignment="center">
+                    </dxi-column>
+
+                    <dxi-column dataField="clm_id" caption="Id"></dxi-column>
+                    <dxi-column dataField="clm_email" caption="Email"></dxi-column>
+                    <dxi-column dataField="clm_nombre" caption="Nombre"></dxi-column>
+                    <dxi-column dataField="tpd_nombre" caption="Tipo Documento"></dxi-column>
+                    <dxi-column dataField="clm_numdocumento" caption="Número Documento"></dxi-column>
+                    <dxi-column dataField="clm_telcelular" caption="Teléfono Celular"></dxi-column>
+                    <dxi-column dataField="clm_telfijo" caption="Teléfono Fijo"></dxi-column>
+                    <dxi-column dataField="loc_nombre" caption="Localidad"></dxi-column>
+                    <dxi-column dataField="mun_nombre" caption="Municipio"></dxi-column>
+                    <dxi-column dataField="dep_nombre" caption="Departamento"></dxi-column>
+                    <dxi-column dataField="pro_nombre" caption="Profesión Base"></dxi-column>
+                    <dxi-column dataField="hor_nombre" caption="Horario Consejerías"></dxi-column>
+                    <dxi-column dataField="clm_cuentaexperiencia" caption="Cuenta con Experiencia"></dxi-column>
+                    <dxi-column dataField="clm_cuentaestudiosposgrado" caption="Cuenta con Estudios de Posgrado">
+                    </dxi-column>
+                    <dxi-column dataField="clm_estudiosposgradoscuales" caption="Cuales Estudios"></dxi-column>
+                    <dxi-column dataField="clm_publicacioneslactanciamaterna" caption="Publicaciones"></dxi-column>
+                    <dxi-column dataField="clm_prestaconsejeriamanera" caption="Presta la Consejería de Manera">
+                    </dxi-column>
+                    <dxi-column dataField="clm_cuentapaginaweb" caption="Cuenta con Página Web"></dxi-column>
+                    <dxi-column dataField="clm_whatsapp" caption="WhatsApp"></dxi-column>
+                    <dxi-column dataField="clm_facebook" caption="Facebook"></dxi-column>
+                    <dxi-column dataField="clm_instagram" caption="Instagram"></dxi-column>
+                    <dxi-column dataField="clm_twitter" caption="Twitter"></dxi-column>
+                    <dxi-column dataField="clm_blog" caption="Blog"></dxi-column>
+                    <dxi-column dataField="clm_otro" caption="Otro"></dxi-column>
+                    <dxi-column dataField="pre_nombre" caption="Precio Consulta"></dxi-column>
+                    <dxi-column dataField="clm_dispuestodonar" caption="Está dispuesto a Donar Conocimiento">
+                    </dxi-column>
+                    <dxi-column dataField="clm_usuariaatendidanombre1" caption="Usuaria1 Atentida Nombre"></dxi-column>
+                    <dxi-column dataField="clm_usuariaatendidatelefono1" caption="Usuaria1 Atendida Telefono">
+                    </dxi-column>
+                    <dxi-column dataField="clm_usuariaatendidanombre2" caption="Usuaria2 Atendida Nombre"></dxi-column>
+                    <dxi-column dataField="clm_usuariaatendidatelefono2" caption="Usuaria2 Atendida Telefono">
+                    </dxi-column>
+                    <dxi-column dataField="clm_usuariaatendidanombre3" caption="Usuaria3 Atendida Nombre"></dxi-column>
+                    <dxi-column dataField="clm_usuariaatendidatelefono3" caption="Usuaria3 Atendida Telefono">
+                    </dxi-column>
+                    <dxi-column dataField="clm_datetimecreated" caption="Fecha Registro"></dxi-column>
+                    <dxi-column dataField="clm_estado" caption="Estado"></dxi-column>
+                    <dxi-column dataField="clm_observacionaprobado" caption="Observación Aprobación"></dxi-column>
+                    <dxi-column dataField="clm_fechaaprobacion" caption="Fecha Aprobación"></dxi-column>
+                    <dxi-column dataField="clm_observacionrechazado" caption="Observación Rechazo"></dxi-column>
+                    <dxi-column dataField="clm_fecharechazo" caption="Fecha Rechazo"></dxi-column>
+                    <dxi-column dataField="usu_nombre" caption="Usuario Aprobó/Rechazó"></dxi-column>
+
+
+                    <dxo-export [enabled]="true" fileName="Sábana de Solicitudes"></dxo-export>
+                    <dxo-filter-row [visible]="true"></dxo-filter-row>
+                    <dxo-header-filter [visible]="true"></dxo-header-filter>
+                    <dxo-group-panel [visible]="false"></dxo-group-panel>
+                    <dxo-search-panel [visible]="true" placeholder="Buscar..."></dxo-search-panel>
+                    <dxo-state-storing [enabled]="true" type="localStorage" storageKey="storage">
+                    </dxo-state-storing>
+
+                    <dxo-remote-operations [sorting]="true" [paging]="true">
+                    </dxo-remote-operations>
+                    <dxo-paging [pageSize]="10"></dxo-paging>
+
+                    <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 40]"></dxo-pager>
+                    <dxo-summary>
+                        <dxi-total-item column="clm_id" summaryType="count" displayFormat="Cantidad: {0}">
+                        </dxi-total-item>
+                    </dxo-summary>
+
+                    <div *dxTemplate="let d of 'accionCellTemplate'">
+                        <div class="button-cell">
+
+                            <dx-button id="button" class="rounded mx-auto" text="Ver Detalle" type="success"
+                                (click)="VerDetalle(d.data.clm_id)"></dx-button>
+
+                        </div>
+                    </div>
+
+                </dx-data-grid>
+
+
+            </div>
+        </div>
+
+
+
+        <div *ngIf="VisualizarEditarEncuesta">
+            <div class="tarjeta">
+                <div class="long-title">
+                    <h3>Detalles de la Solicitud</h3>
+                </div>
+            </div>
+
+            <div class="tarjeta">
+               
+            </div>
+        </div>
+        <!-- Fin Grilla de Indicadores-->
+
+    </div>
+
+    <!-- Fin Body-->

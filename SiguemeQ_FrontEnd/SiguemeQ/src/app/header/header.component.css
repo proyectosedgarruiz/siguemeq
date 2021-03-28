@@ -1,0 +1,15 @@
+.left
+{
+    float: left;
+    font-weight: bold;
+}
+
+.center
+{
+    float: center;
+}
+
+.right
+{
+    float: right;
+}

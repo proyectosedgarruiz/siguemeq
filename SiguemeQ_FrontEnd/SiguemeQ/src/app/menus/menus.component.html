@@ -1,0 +1,21 @@
+<div class="form">
+    <h4>Menú Principal</h4>
+    <dx-tree-view
+        id="treeview"
+        [items]="menuopcion"
+        [width]="200"
+        [height]="800"
+        [showCheckBoxesMode]="showCheckBoxesMode"
+        [selectionMode]="selectionMode"
+        [selectNodesRecursive]="selectNodesRecursive"
+        [selectByClick]="selectByClick"
+        (onSelectionChanged)="treeViewSelectionChanged($event)"        
+        (onContentReady)="treeViewContentReady($event)"
+    >
+        <div *dxTemplate="let item of 'item'">
+            {{ item.fullName  }}
+        </div>
+    </dx-tree-view>
+   
+</div>
+

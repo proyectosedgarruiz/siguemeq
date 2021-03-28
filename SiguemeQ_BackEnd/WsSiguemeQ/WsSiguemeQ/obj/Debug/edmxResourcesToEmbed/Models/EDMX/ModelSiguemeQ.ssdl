@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SiguemeQ_DesarrolloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DBarrio' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DBarrio">
+    <Key>
+      <PropertyRef Name="idBarrio" />
+      <PropertyRef Name="idUpz" />
+      <PropertyRef Name="descripcionBarrio" />
+      <PropertyRef Name="activoBarrio" />
+    </Key>
+    <Property Name="idBarrio" Type="nchar" MaxLength="7" Nullable="false" />
+    <Property Name="idUpz" Type="int" Nullable="false" />
+    <Property Name="descripcionBarrio" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="activoBarrio" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DFechaFestiva' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DFechaFestiva">
+    <Key>
+      <PropertyRef Name="fechaFestivo" />
+      <PropertyRef Name="anio" />
+      <PropertyRef Name="activo" />
+    </Key>
+    <Property Name="fechaFestivo" Type="date" Nullable="false" />
+    <Property Name="anio" Type="smallint" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DLocalidad' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DLocalidad">
+    <Key>
+      <PropertyRef Name="idLocalidad" />
+      <PropertyRef Name="descripcionLocalidad" />
+      <PropertyRef Name="activoLocalidad" />
+    </Key>
+    <Property Name="idLocalidad" Type="int" Nullable="false" />
+    <Property Name="descripcionLocalidad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="activoLocalidad" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DModulos">
+    <Key>
+      <PropertyRef Name="idModulo" />
+    </Key>
+    <Property Name="idModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DPrivilegioRol">
+    <Key>
+      <PropertyRef Name="idPrivilegioRol" />
+    </Key>
+    <Property Name="idPrivilegioRol" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPrivilegio" Type="int" Nullable="false" />
+    <Property Name="idRol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DPrivilegios">
+    <Key>
+      <PropertyRef Name="idPrivilegio" />
+    </Key>
+    <Property Name="idPrivilegio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="componente" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="idModulo" Type="int" Nullable="false" />
+    <Property Name="orden" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DRoles">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DServicio">
+    <Key>
+      <PropertyRef Name="idServicio" />
+    </Key>
+    <Property Name="idServicio" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="codigoServicio" Type="int" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoIdentificacion' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DTipoIdentificacion">
+    <Key>
+      <PropertyRef Name="idTipoIdentificacion" />
+      <PropertyRef Name="descripcion" />
+      <PropertyRef Name="activo" />
+    </Key>
+    <Property Name="idTipoIdentificacion" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoQueja' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DTipoQueja">
+    <Key>
+      <PropertyRef Name="idTipoQueja" />
+    </Key>
+    <Property Name="idTipoQueja" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="255" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoSolicitud' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DTipoSolicitud">
+    <Key>
+      <PropertyRef Name="idTipoSolicitud" />
+    </Key>
+    <Property Name="idTipoSolicitud" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="255" />
+    <Property Name="activo" Type="bit" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DUpz">
+    <Key>
+      <PropertyRef Name="idUpz" />
+      <PropertyRef Name="idLocalidad" />
+      <PropertyRef Name="descripcionUpz" />
+      <PropertyRef Name="activoUpz" />
+    </Key>
+    <Property Name="idUpz" Type="int" Nullable="false" />
+    <Property Name="idLocalidad" Type="int" Nullable="false" />
+    <Property Name="descripcionUpz" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="activoUpz" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entidad">
+    <Key>
+      <PropertyRef Name="idEntidad" />
+    </Key>
+    <Property Name="idEntidad" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEntidadRelacionada" Type="bigint" />
+    <Property Name="idTipoIdentificacion" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="numeroIdentificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="digitoVerificacion" Type="int" Nullable="false" />
+    <Property Name="codigoHabilitacion" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombreEntidad" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="idNaturalezaJuridica" Type="int" Nullable="false" />
+    <Property Name="correoElectronico" Type="nvarchar" MaxLength="255" />
+    <Property Name="telefono" Type="nvarchar" MaxLength="50" />
+    <Property Name="direccion" Type="nvarchar" MaxLength="255" />
+    <Property Name="direccionNoUrbana" Type="bit" />
+    <Property Name="idLocalidadDireccion" Type="int" />
+    <Property Name="idBarrioDireccion" Type="nchar" MaxLength="7" />
+    <Property Name="idUpzDireccion" Type="int" />
+    <Property Name="fechaInscripcionRUH" Type="date" />
+    <Property Name="idTipoPrestador" Type="int" />
+    <Property Name="idTipoNitComun" Type="int" />
+    <Property Name="fechaCreado" Type="datetime" Nullable="false" />
+    <Property Name="fechaActualizado" Type="datetime" Nullable="false" />
+    <Property Name="usrCreado" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="usrModificado" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Entidad_Servicio">
+    <Key>
+      <PropertyRef Name="idEntidadServicio" />
+    </Key>
+    <Property Name="idEntidadServicio" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idEntidad" Type="bigint" Nullable="false" />
+    <Property Name="idServicio" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idPersona" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idTipoIdentificacion" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="numeroIdentificacion" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="digitoVerificacion" Type="int" />
+    <Property Name="primerNombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="segundoNombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="primerApellido" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="segundoApellido" Type="nvarchar" MaxLength="50" />
+    <Property Name="nombresApellidos" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="direccion" Type="nvarchar" MaxLength="255" />
+    <Property Name="idTipoDireccion" Type="int" />
+    <Property Name="idLocalidad" Type="int" />
+    <Property Name="idBarrio" Type="nchar" MaxLength="7" />
+    <Property Name="idUpz" Type="int" Nullable="false" />
+    <Property Name="telefono1" Type="nvarchar" MaxLength="50" />
+    <Property Name="telefono2" Type="nvarchar" MaxLength="50" />
+    <Property Name="correoElectronico" Type="nvarchar" MaxLength="255" />
+    <Property Name="fechaCreado" Type="datetime" Nullable="false" />
+    <Property Name="fechaModificado" Type="datetime" />
+    <Property Name="usrCreado" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="Queja">
+    <Key>
+      <PropertyRef Name="idQueja" />
+    </Key>
+    <Property Name="idQueja" Type="bigint" Nullable="false" />
+    <Property Name="idTipoSolicitud" Type="int" />
+    <Property Name="numeroRadicadoQueja" Type="nvarchar" MaxLength="50" />
+    <Property Name="fechaRadicadoQueja" Type="date" />
+    <Property Name="fechaLimiteRespuesta" Type="date" />
+    <Property Name="idEntidadRemitente" Type="int" />
+    <Property Name="numeroRadicadoAtencionUsuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="idTipoRecepcionQueja" Type="int" />
+    <Property Name="idPersonaQuejoso" Type="bigint" />
+    <Property Name="idPersonaAfectado" Type="bigint" />
+    <Property Name="idEntidadServicioInvolucrada" Type="bigint" />
+    <Property Name="motivoQueja" Type="nvarchar(max)" />
+    <Property Name="radicadosRelacionados" Type="nvarchar(max)" />
+    <Property Name="idPalabrasClaves" Type="int" />
+    <Property Name="idCaracteristicasEspeciales" Type="int" Nullable="false" />
+    <Property Name="idTipoDireccionamiento" Type="int" />
+    <Property Name="idGrupoEntrega" Type="int" />
+    <Property Name="foliosEntrega" Type="int" />
+    <Property Name="fechaEntrega" Type="date" />
+    <Property Name="idEstadoQueja" Type="int" />
+    <Property Name="fechaCreado" Type="datetime" />
+    <Property Name="fechaActualizado" Type="datetime" />
+    <Property Name="usrCreado" Type="nvarchar" MaxLength="256" />
+    <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+    <Property Name="estado" Type="nvarchar" MaxLength="1" />
+    <Property Name="fechaCreado" Type="datetime" />
+    <Property Name="fechaActualizado" Type="datetime" />
+    <Property Name="usrCreado" Type="nvarchar" MaxLength="256" />
+    <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
+    <Property Name="idRol" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Visita">
+    <Key>
+      <PropertyRef Name="idVisita" />
+    </Key>
+    <Property Name="idVisita" Type="bigint" Nullable="false" />
+    <Property Name="idQueja" Type="bigint" />
+    <Property Name="fechaVisita" Type="date" />
+    <Property Name="idEstadoVisita" Type="int" />
+    <Property Name="fechaEntregaVisita" Type="date" />
+    <Property Name="fechaReciboVisita" Type="date" />
+    <Property Name="idCoordinador" Type="int" />
+    <Property Name="foliosResultadoVisita" Type="int" />
+    <Property Name="anexosResultadoVisita" Type="nvarchar" MaxLength="256" />
+    <Property Name="idResultadoVisita" Type="int" />
+    <Property Name="idTipoMedida" Type="int" />
+    <Property Name="idImposicionMedidaREPS" Type="int" />
+  </EntityType>
+  <Association Name="FK_Entidad_Servicio_DServicio">
+    <End Role="DServicio" Type="Self.DServicio" Multiplicity="1" />
+    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DServicio">
+        <PropertyRef Name="idServicio" />
+      </Principal>
+      <Dependent Role="Entidad_Servicio">
+        <PropertyRef Name="idServicio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Entidad_Servicio_Entidad">
+    <End Role="Entidad" Type="Self.Entidad" Multiplicity="1" />
+    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad">
+        <PropertyRef Name="idEntidad" />
+      </Principal>
+      <Dependent Role="Entidad_Servicio">
+        <PropertyRef Name="idEntidad" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrivilegioRol_Privilegios">
+    <End Role="DPrivilegios" Type="Self.DPrivilegios" Multiplicity="1" />
+    <End Role="DPrivilegioRol" Type="Self.DPrivilegioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DPrivilegios">
+        <PropertyRef Name="idPrivilegio" />
+      </Principal>
+      <Dependent Role="DPrivilegioRol">
+        <PropertyRef Name="idPrivilegio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrivilegioRol_Roles">
+    <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
+    <End Role="DPrivilegioRol" Type="Self.DPrivilegioRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DRoles">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="DPrivilegioRol">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Entidad_Servicio">
+    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Entidad_Servicio">
+        <PropertyRef Name="idEntidadServicio" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="idEntidadServicioInvolucrada" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="idPersonaQuejoso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Queja_Persona1">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
+    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="idPersona" />
+      </Principal>
+      <Dependent Role="Queja">
+        <PropertyRef Name="idPersonaAfectado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuarios_Roles">
+    <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DRoles">
+        <PropertyRef Name="idRol" />
+      </Principal>
+      <Dependent Role="Usuarios">
+        <PropertyRef Name="idRol" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Visita_Queja">
+    <End Role="Queja" Type="Self.Queja" Multiplicity="0..1" />
+    <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Queja">
+        <PropertyRef Name="idQueja" />
+      </Principal>
+      <Dependent Role="Visita">
+        <PropertyRef Name="idQueja" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_ADD_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="componente" Type="nvarchar" Mode="In" />
+    <Parameter Name="idModulo" Type="int" Mode="In" />
+    <Parameter Name="orden" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ADD_PRIVILEGIOROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPrivilegio" Type="int" Mode="In" />
+    <Parameter Name="idRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_ADD_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_ADD_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="estado" Type="nvarchar" Mode="In" />
+    <Parameter Name="usrCreado" Type="nvarchar" Mode="In" />
+    <Parameter Name="idRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_FIND_PRIVILEGIOROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPrivilegioRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_FIND_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_FIND_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_FIND_USUARIO_AUTORIZADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_LIST_ENTIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_PRIVILEGIOROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_PRIVILEGIOSBYROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_LIST_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_TIPOSOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_UPD_CLAVE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="clave" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UPD_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPrivilegio" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
+    <Parameter Name="componente" Type="nvarchar" Mode="In" />
+    <Parameter Name="idModulo" Type="int" Mode="In" />
+    <Parameter Name="orden" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UPD_PRIVILEGIOROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPrivilegioRol" Type="int" Mode="In" />
+    <Parameter Name="idPrivilegio" Type="int" Mode="In" />
+    <Parameter Name="idRol" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_UPD_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idRol" Type="int" Mode="In" />
+    <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SP_UPD_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="estado" Type="nvarchar" Mode="In" />
+    <Parameter Name="usrModificado" Type="nvarchar" Mode="In" />
+    <Parameter Name="idRol" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SiguemeQ_DesarrolloModelStoreContainer">
+    <EntitySet Name="DModulos" EntityType="Self.DModulos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DPrivilegioRol" EntityType="Self.DPrivilegioRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DPrivilegios" EntityType="Self.DPrivilegios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DRoles" EntityType="Self.DRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DServicio" EntityType="Self.DServicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Entidad_Servicio" EntityType="Self.Entidad_Servicio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Queja" EntityType="Self.Queja" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visita" EntityType="Self.Visita" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DBarrio" EntityType="Self.DBarrio" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DBarrio].[idBarrio] AS [idBarrio], 
+    [DBarrio].[idUpz] AS [idUpz], 
+    [DBarrio].[descripcionBarrio] AS [descripcionBarrio], 
+    [DBarrio].[activoBarrio] AS [activoBarrio]
+    FROM [dbo].[DBarrio] AS [DBarrio]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DFechaFestiva" EntityType="Self.DFechaFestiva" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DFechaFestiva].[fechaFestivo] AS [fechaFestivo], 
+    [DFechaFestiva].[anio] AS [anio], 
+    [DFechaFestiva].[activo] AS [activo]
+    FROM [dbo].[DFechaFestiva] AS [DFechaFestiva]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DLocalidad" EntityType="Self.DLocalidad" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DLocalidad].[idLocalidad] AS [idLocalidad], 
+    [DLocalidad].[descripcionLocalidad] AS [descripcionLocalidad], 
+    [DLocalidad].[activoLocalidad] AS [activoLocalidad]
+    FROM [dbo].[DLocalidad] AS [DLocalidad]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DTipoIdentificacion" EntityType="Self.DTipoIdentificacion" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DTipoIdentificacion].[idTipoIdentificacion] AS [idTipoIdentificacion], 
+    [DTipoIdentificacion].[descripcion] AS [descripcion], 
+    [DTipoIdentificacion].[activo] AS [activo]
+    FROM [dbo].[DTipoIdentificacion] AS [DTipoIdentificacion]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DTipoQueja" EntityType="Self.DTipoQueja" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DTipoQueja].[idTipoQueja] AS [idTipoQueja], 
+    [DTipoQueja].[descripcion] AS [descripcion], 
+    [DTipoQueja].[activo] AS [activo]
+    FROM [dbo].[DTipoQueja] AS [DTipoQueja]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DTipoSolicitud" EntityType="Self.DTipoSolicitud" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DTipoSolicitud].[idTipoSolicitud] AS [idTipoSolicitud], 
+    [DTipoSolicitud].[descripcion] AS [descripcion], 
+    [DTipoSolicitud].[activo] AS [activo]
+    FROM [dbo].[DTipoSolicitud] AS [DTipoSolicitud]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DUpz" EntityType="Self.DUpz" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DUpz].[idUpz] AS [idUpz], 
+    [DUpz].[idLocalidad] AS [idLocalidad], 
+    [DUpz].[descripcionUpz] AS [descripcionUpz], 
+    [DUpz].[activoUpz] AS [activoUpz]
+    FROM [dbo].[DUpz] AS [DUpz]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Entidad_Servicio_DServicio" Association="Self.FK_Entidad_Servicio_DServicio">
+      <End Role="DServicio" EntitySet="DServicio" />
+      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Entidad_Servicio_Entidad" Association="Self.FK_Entidad_Servicio_Entidad">
+      <End Role="Entidad" EntitySet="Entidad" />
+      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrivilegioRol_Privilegios" Association="Self.FK_PrivilegioRol_Privilegios">
+      <End Role="DPrivilegios" EntitySet="DPrivilegios" />
+      <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrivilegioRol_Roles" Association="Self.FK_PrivilegioRol_Roles">
+      <End Role="DRoles" EntitySet="DRoles" />
+      <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Entidad_Servicio" Association="Self.FK_Queja_Entidad_Servicio">
+      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Persona" Association="Self.FK_Queja_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Queja_Persona1" Association="Self.FK_Queja_Persona1">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="Queja" EntitySet="Queja" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
+      <End Role="DRoles" EntitySet="DRoles" />
+      <End Role="Usuarios" EntitySet="Usuarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Visita_Queja" Association="Self.FK_Visita_Queja">
+      <End Role="Queja" EntitySet="Queja" />
+      <End Role="Visita" EntitySet="Visita" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

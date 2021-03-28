@@ -1,0 +1,217 @@
+<div class="cent">
+
+    <br>
+    <br><br><br>
+
+    <!--<div [blockClass]="'box-list m-t-15'" class="tarjeta">-->
+    <div class="tarjeta" *ngIf="displayListUsuarios">
+        <div class="long-title">
+            <h3>Gestión de Usuarios</h3>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <dx-button id="button" class="rounded mx-auto" text="Crear Usuario" type="success"
+                    (click)="showPanel('C',0)"></dx-button>
+            </div>
+        </div>
+    </div>
+    <!--</div>-->
+    <!---->
+
+
+    <!--Inicio Grilla Usuarios-->
+
+    <div class="tarjeta" *ngIf="displayListUsuarios">
+        <div *ngIf="displayListUsuarios">
+
+
+
+            <dx-data-grid id="gridContainer" [dataSource]="usuariosLista" keyExpr="idUsuario" showBorders="true"
+                [columnAutoWidth]="true" [rowAlternationEnabled]="true" ng-selected="true"
+                [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true"
+                [showBorders]="true">
+
+                <dxo-editing mode="form"></dxo-editing>
+                <dxi-column caption="Operaciones" cellTemplate="accionCellTemplate" alignment="center">
+                </dxi-column>
+
+
+                <dxi-column dataField="idUsuario" caption="Id"></dxi-column>
+                <dxi-column dataField="nombre" caption="Nombre"></dxi-column>
+                <dxi-column dataField="estado" caption="Estado"></dxi-column>
+                <dxi-column dataField="descripcionRol" caption="rol"></dxi-column>
+                <dxi-column dataField="fechaCreado" caption="Fecha Creado"></dxi-column>
+                <dxi-column dataField="usrCreado" caption="Usuario Creado"></dxi-column>
+                <dxi-column dataField="fechaActualizado" caption="Fecha Actualizado"></dxi-column>
+                <dxi-column dataField="usrModificado" caption="Usuario Actualizado"></dxi-column>
+
+
+                <dxo-export [enabled]="true" fileName="Usuarios"></dxo-export>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxo-header-filter [visible]="true"></dxo-header-filter>
+                <dxo-group-panel [visible]="false"></dxo-group-panel>
+                <dxo-search-panel [visible]="true" placeholder="Buscar..."></dxo-search-panel>
+                <dxo-state-storing [enabled]="true" type="localStorage" storageKey="storage">
+                </dxo-state-storing>
+
+                <dxo-remote-operations [sorting]="true" [paging]="true">
+                </dxo-remote-operations>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+
+                <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 40]"></dxo-pager>
+                <dxo-summary>
+                    <dxi-total-item column="idUsuario" summaryType="count" displayFormat="Cantidad: {0}">
+                    </dxi-total-item>
+                </dxo-summary>
+
+                <div *dxTemplate="let d of 'accionCellTemplate'">
+                    <div class="button-cell">
+
+                        <dx-button id="button" class="rounded mx-auto" text="Actualizar" type="success"
+                            (click)="showPanel('U', d.data.idUsuario)"></dx-button>
+
+                            <dx-button id="button" class="rounded mx-auto" text="Eliminar" type="danger"
+                            (click)="showPanel('E', d.data.idUsuario)"></dx-button>
+
+                        <i style="font-size:20px; cursor:pointer;" class="icofont icofont-law-document"
+                            placement="right" ngbTooltip="Actualizar" (click)="showPanel('U', d.data.idUsuario)"></i>
+
+                    </div>
+                </div>
+            </dx-data-grid>
+
+
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Fin Grilla de Usuarios-->
+
+
+    <!--Formulario Creacion de Usuarios-->
+    <div class="tarjeta" *ngIf="displayCrearUsuarios">
+        <div *ngIf="displayCrearUsuarios">
+            <form #formUsuarios="ngForm" (ngSubmit)="onSubmitUsuarios(formUsuarios.valid)">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Login:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control"
+                                    [ngClass]="{'form-control-danger': !login.valid, 'form-control-inverse': login.valid}"
+                                    name="login" #login="ngModel" [(ngModel)]="usuarios.idUsuario"
+                                    placeholder="Por favor ingrese el Login del Usuario" required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Nombre:</label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control"
+                                    [ngClass]="{'form-control-danger': !nombre.valid, 'form-control-inverse': nombre.valid}"
+                                    name="nombre" #nombre="ngModel" [(ngModel)]="usuarios.nombre"
+                                    placeholder="Por favor ingrese el Nombre del Usuario" required>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Rol:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="rol" #rol [(ngModel)]="usuarios.idRol">
+                                    <option *ngFor="let item of rolesLista" [ngValue]="item.idRol">{{item.descripcion}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Estado:</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" name="estado" #Estado [(ngModel)]="usuarios.estado">
+                                    <option value="A">Activo</option>
+                                    <option value="I">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-sm-4 col-form-label">Clave:</label>
+
+
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control"
+                                    [ngClass]="{'form-control-danger': !clave.valid, 'form-control-inverse': clave.valid}"
+                                    name="clave" #clave="ngModel" [(ngModel)]="usuarios.usu_password"
+                                    placeholder="Por favor presione el bot&oacute;n Crear Clave para generar la Clave del Usuario"
+                                    readonly>
+                                <br>
+                                <dx-button *ngIf="!DisplayCrearClave" id="button" class="rounded mx-auto"
+                                    text="Crear Clave" type="success" style="height: 35px"
+                                    (click)="visualizarcrearclave()"></dx-button>
+
+                                <dx-button id="button" class="rounded mx-auto" text="Ver Clave" type="success"
+                                    style="height: 35px" (click)="visualizarclave()"></dx-button>
+
+                                <br>
+                                <div id="CreacionClave" *ngIf="DisplayCrearClave">
+                                    <br>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{'form-control-danger': !usu_asignar_clave.valid, 'form-control-inverse': usu_asignar_clave.valid}"
+                                        name="usu_asignar_clave" #usu_asignar_clave="ngModel"
+                                        [(ngModel)]="usuarios.usu_asignar_clave"
+                                        placeholder="Registre una clave con máximo 8 caracteres incluyendo letras numero y/o caracteres especiales"
+                                        maxlength="8">
+                                    <br>
+                                    <dx-button id="button" class="rounded mx-auto" style="height: 35px"
+                                        text="Cifrar y Asignar esta Clave" type="success" (click)="asignarclave()">
+                                    </dx-button>
+                                    <dx-button id="button" class="rounded mx-auto"
+                                        style="background-color: #285f8f; height: 35px" text="Ocultar" type="success"
+                                        (click)="DisplayCrearClave=false"></dx-button>
+                                </div>
+                                <br>
+                                <div id="VisualizarClave" *ngIf="DisplayVisualizarClave">
+                                    <br>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{'form-control-danger': !usu_visualizar_clave.valid, 'form-control-inverse': usu_visualizar_clave.valid}"
+                                        name="usu_visualizar_clave" #usu_visualizar_clave="ngModel"
+                                        [(ngModel)]="usuarios.usu_visualizar_clave" readonly>
+
+                                    <br>
+                                    <dx-button id="button" class="rounded mx-auto"
+                                        style="background-color: #285f8f; height: 35px" text="Ocultar" type="success"
+                                        (click)="DisplayVisualizarClave=false"></dx-button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary m-b-0">Guardar</button>
+                        <button type="button" (click)="showPanel('V',0)" class="btn btn-primary m-b-0">Volver</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--Fin Formulario Creacion de Usuarios-->
+
+
+
+</div>
+
+<!-- Fin Body-->

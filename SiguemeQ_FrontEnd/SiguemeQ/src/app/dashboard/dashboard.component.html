@@ -1,0 +1,33 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="borde2 col-lg-12">
+            <app-header [publicas]="publicas" (cerrar)="cerrarsesion($event)"></app-header>
+        </div>
+    </div>
+    <div class="row">
+     
+           
+                <div class="borde col-lg-2">
+                    <div>
+                        <app-menus (opcionmenuseleccionada)="opcionmenuseleccionada($event)" [publicas]="publicas">
+                        </app-menus>
+
+                    </div>
+                </div>
+                <div class="borde col-lg-10">
+                    <div>
+                        <app-dashboardpages #dashboardpages [componenteactivo]="componenteactivo" [publicas]="publicas">
+                        </app-dashboardpages>
+
+                    </div>
+                </div>
+
+
+           
+
+
+       
+    </div>
+
+</div>
