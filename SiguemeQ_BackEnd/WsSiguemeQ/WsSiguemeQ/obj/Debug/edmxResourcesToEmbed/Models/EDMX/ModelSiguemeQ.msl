@@ -1,12 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SiguemeQ_DesarrolloModelStoreContainer" CdmEntityContainer="SiguemeQ_DesarrolloEntities">
+    <EntitySetMapping Name="DEntidadRemitente">
+      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DEntidadRemitente">
+        <MappingFragment StoreEntitySet="DEntidadRemitente">
+          <ScalarProperty Name="idEntidadRemitente" ColumnName="idEntidadRemitente" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DModulos">
+      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DModulos">
+        <MappingFragment StoreEntitySet="DModulos">
+          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DPrivilegioRol">
       <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DPrivilegioRol">
         <MappingFragment StoreEntitySet="DPrivilegioRol">
           <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
           <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
           <ScalarProperty Name="idRol" ColumnName="idRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DPrivilegios">
+      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DPrivilegios">
+        <MappingFragment StoreEntitySet="DPrivilegios">
+          <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="componente" ColumnName="componente" />
+          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+          <ScalarProperty Name="orden" ColumnName="orden" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -86,36 +113,6 @@
           <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
           <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
           <ScalarProperty Name="fechaModificado" ColumnName="fechaModificado" />
-          <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
-          <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Queja">
-      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.Queja">
-        <MappingFragment StoreEntitySet="Queja">
-          <ScalarProperty Name="idQueja" ColumnName="idQueja" />
-          <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
-          <ScalarProperty Name="numeroRadicadoQueja" ColumnName="numeroRadicadoQueja" />
-          <ScalarProperty Name="fechaRadicadoQueja" ColumnName="fechaRadicadoQueja" />
-          <ScalarProperty Name="fechaLimiteRespuesta" ColumnName="fechaLimiteRespuesta" />
-          <ScalarProperty Name="idEntidadRemitente" ColumnName="idEntidadRemitente" />
-          <ScalarProperty Name="numeroRadicadoAtencionUsuario" ColumnName="numeroRadicadoAtencionUsuario" />
-          <ScalarProperty Name="idTipoRecepcionQueja" ColumnName="idTipoRecepcionQueja" />
-          <ScalarProperty Name="idPersonaQuejoso" ColumnName="idPersonaQuejoso" />
-          <ScalarProperty Name="idPersonaAfectado" ColumnName="idPersonaAfectado" />
-          <ScalarProperty Name="idEntidadServicioInvolucrada" ColumnName="idEntidadServicioInvolucrada" />
-          <ScalarProperty Name="motivoQueja" ColumnName="motivoQueja" />
-          <ScalarProperty Name="radicadosRelacionados" ColumnName="radicadosRelacionados" />
-          <ScalarProperty Name="idPalabrasClaves" ColumnName="idPalabrasClaves" />
-          <ScalarProperty Name="idCaracteristicasEspeciales" ColumnName="idCaracteristicasEspeciales" />
-          <ScalarProperty Name="idTipoDireccionamiento" ColumnName="idTipoDireccionamiento" />
-          <ScalarProperty Name="idGrupoEntrega" ColumnName="idGrupoEntrega" />
-          <ScalarProperty Name="foliosEntrega" ColumnName="foliosEntrega" />
-          <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
-          <ScalarProperty Name="idEstadoQueja" ColumnName="idEstadoQueja" />
-          <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
-          <ScalarProperty Name="fechaActualizado" ColumnName="fechaActualizado" />
           <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
           <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
         </MappingFragment>
@@ -202,10 +199,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DTipoQueja">
-      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoQueja">
-        <MappingFragment StoreEntitySet="DTipoQueja">
-          <ScalarProperty Name="idTipoQueja" ColumnName="idTipoQueja" />
+    <EntitySetMapping Name="DTipoRecepcionQueja">
+      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoRecepcionQueja">
+        <MappingFragment StoreEntitySet="DTipoRecepcionQueja">
+          <ScalarProperty Name="idTipoRecepcionQueja" ColumnName="idTipoRecepcionQueja" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DTipoSolicitud">
+      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoSolicitud">
+        <MappingFragment StoreEntitySet="DTipoSolicitud">
+          <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="activo" ColumnName="activo" />
         </MappingFragment>
@@ -221,6 +227,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ADD_PERSONA" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PERSONA" />
+    <FunctionImportMapping FunctionImportName="SP_ADD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PRIVILEGIO" />
     <FunctionImportMapping FunctionImportName="SP_ADD_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PRIVILEGIOROL" />
     <FunctionImportMapping FunctionImportName="SP_ADD_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_ROL" />
     <FunctionImportMapping FunctionImportName="SP_ADD_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_USUARIO" />
@@ -256,42 +264,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIOROL">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOROL_Result">
-          <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
-          <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
-          <ScalarProperty Name="descripcionPrivilegio" ColumnName="descripcionPrivilegio" />
-          <ScalarProperty Name="idRol" ColumnName="idRol" />
-          <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LIST_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ROL">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ROL_Result">
-          <ScalarProperty Name="idRol" ColumnName="idRol" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIOROL" />
-    <FunctionImportMapping FunctionImportName="SP_UPD_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_ROL" />
-    <FunctionImportMapping FunctionImportName="SP_LIST_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_USUARIO">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result">
-          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-          <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
-          <ScalarProperty Name="fechaActualizado" ColumnName="fechaActualizado" />
-          <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
-          <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
-          <ScalarProperty Name="idRol" ColumnName="idRol" />
-          <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_FIND_USUARIO_AUTORIZADO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_FIND_USUARIO_AUTORIZADO">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_AUTORIZADO_Result">
@@ -308,26 +280,95 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="DModulos">
-      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DModulos">
-        <MappingFragment StoreEntitySet="DModulos">
+    <FunctionImportMapping FunctionImportName="SP_LIST_BARRIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_BARRIO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_BARRIO_Result">
+          <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+          <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+          <ScalarProperty Name="descripcionBarrio" ColumnName="descripcionBarrio" />
+          <ScalarProperty Name="activoBarrio" ColumnName="activoBarrio" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_ENTIDAD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ENTIDAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result">
+          <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+          <ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_ENTIDADREMITENTE" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ENTIDADREMITENTE">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ENTIDADREMITENTE_Result">
+          <ScalarProperty Name="idEntidadRemitente" ColumnName="idEntidadRemitente" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DPrivilegios">
-      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DPrivilegios">
-        <MappingFragment StoreEntitySet="DPrivilegios">
-          <ScalarProperty Name="orden" ColumnName="orden" />
-          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-          <ScalarProperty Name="componente" ColumnName="componente" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="SP_ADD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PRIVILEGIO" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_LOCALIDAD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_LOCALIDAD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_LOCALIDAD_Result">
+          <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+          <ScalarProperty Name="descripcionLocalidad" ColumnName="descripcionLocalidad" />
+          <ScalarProperty Name="activoLocalidad" ColumnName="activoLocalidad" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_PERSONAAFECTADO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PERSONAAFECTADO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PERSONAAFECTADO_Result">
+          <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+          <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+          <ScalarProperty Name="numeroIdentificacion" ColumnName="numeroIdentificacion" />
+          <ScalarProperty Name="digitoVerificacion" ColumnName="digitoVerificacion" />
+          <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+          <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+          <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+          <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+          <ScalarProperty Name="nombresApellidos" ColumnName="nombresApellidos" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+          <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+          <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+          <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+          <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+          <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+          <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+          <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
+          <ScalarProperty Name="fechaModificado" ColumnName="fechaModificado" />
+          <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
+          <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_PERSONAQUEJOSO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PERSONAQUEJOSO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PERSONAQUEJOSO_Result">
+          <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+          <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+          <ScalarProperty Name="numeroIdentificacion" ColumnName="numeroIdentificacion" />
+          <ScalarProperty Name="digitoVerificacion" ColumnName="digitoVerificacion" />
+          <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+          <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+          <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+          <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+          <ScalarProperty Name="nombresApellidos" ColumnName="nombresApellidos" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+          <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+          <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+          <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+          <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+          <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+          <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+          <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+          <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
+          <ScalarProperty Name="fechaModificado" ColumnName="fechaModificado" />
+          <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
+          <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIO">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIO_Result">
@@ -340,33 +381,58 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIOROL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOROL_Result">
+          <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
+          <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
+          <ScalarProperty Name="descripcionPrivilegio" ColumnName="descripcionPrivilegio" />
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+          <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIOSBYROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIOSBYROL">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOSBYROL_Result">
           <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
           <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
           <ScalarProperty Name="descripcionPrivilegio" ColumnName="descripcionPrivilegio" />
+          <ScalarProperty Name="componente" ColumnName="componente" />
           <ScalarProperty Name="idRol" ColumnName="idRol" />
           <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
           <ScalarProperty Name="idModulo" ColumnName="idModulo" />
           <ScalarProperty Name="descripcionModulo" ColumnName="descripcionModulo" />
           <ScalarProperty Name="orden" ColumnName="orden" />
-          <ScalarProperty Name="componente" ColumnName="componente" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIO" />
-    <FunctionImportMapping FunctionImportName="SP_UPD_CLAVE_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_CLAVE_USUARIO" />
-    <FunctionImportMapping FunctionImportName="SP_UPD_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_USUARIO" />
-    <EntitySetMapping Name="DTipoSolicitud">
-      <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoSolicitud">
-        <MappingFragment StoreEntitySet="DTipoSolicitud">
-          <ScalarProperty Name="activo" ColumnName="activo" />
+    <FunctionImportMapping FunctionImportName="SP_LIST_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ROL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ROL_Result">
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_TIPOIDENTIFICACION" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_TIPOIDENTIFICACION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_TIPOIDENTIFICACION_Result">
+          <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_TIPORECEPCIONQUEJA" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_TIPORECEPCIONQUEJA">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_TIPORECEPCIONQUEJA_Result">
+          <ScalarProperty Name="idTipoRecepcionQueja" ColumnName="idTipoRecepcionQueja" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_LIST_TIPOSOLICITUD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_TIPOSOLICITUD">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_TIPOSOLICITUD_Result">
@@ -375,13 +441,35 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_LIST_ENTIDAD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ENTIDAD">
+    <FunctionImportMapping FunctionImportName="SP_LIST_UPZ" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_UPZ">
       <ResultMapping>
-        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result">
-          <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
-          <ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_UPZ_Result">
+          <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+          <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+          <ScalarProperty Name="descripcionUpz" ColumnName="descripcionUpz" />
+          <ScalarProperty Name="activoUpz" ColumnName="activoUpz" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_LIST_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_USUARIO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
+          <ScalarProperty Name="fechaActualizado" ColumnName="fechaActualizado" />
+          <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
+          <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+          <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_UPD_CLAVE_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_CLAVE_USUARIO" />
+    <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIO" />
+    <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIOROL" />
+    <FunctionImportMapping FunctionImportName="SP_UPD_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_ROL" />
+    <FunctionImportMapping FunctionImportName="SP_UPD_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_USUARIO" />
   </EntityContainerMapping>
 </Mapping>

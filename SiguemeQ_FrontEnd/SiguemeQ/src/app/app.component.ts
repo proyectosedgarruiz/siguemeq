@@ -72,6 +72,7 @@ export class AppComponent {
     {
       autorized: false,
       idUsuario: '',
+      loginUsuario : '',
       idRol: 0,
       nombre : '',
       descripcionRol: ''

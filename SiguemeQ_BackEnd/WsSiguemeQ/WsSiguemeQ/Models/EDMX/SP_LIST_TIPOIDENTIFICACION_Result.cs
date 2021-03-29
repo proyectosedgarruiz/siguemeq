@@ -10,12 +10,11 @@
 namespace WsSiguemeQ.Models.EDMX
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class DTipoQueja
+    public partial class SP_LIST_TIPOIDENTIFICACION_Result
     {
-        public int idTipoQueja { get; set; }
+        public string idTipoIdentificacion { get; set; }
         public string descripcion { get; set; }
-        public Nullable<bool> activo { get; set; }
+        public bool activo { get; set; }
     }
 }

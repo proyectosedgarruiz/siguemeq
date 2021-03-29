@@ -72,9 +72,10 @@ export class AutenticacionComponent implements OnInit {
 
         if (this.selectUsuarios.length > 0  ) {
          
-     
+     debugger;
             this.publicas.autorized = true;
             this.publicas.idUsuario = this.selectUsuarios[0].idUsuario;
+            this.publicas.loginUsuario = login;
             this.publicas.idRol = this.selectUsuarios[0].idRol;
             this.publicas.nombre = this.selectUsuarios[0].nombre;
             this.publicas.descripcionRol = this.selectUsuarios[0].descripcionRol;

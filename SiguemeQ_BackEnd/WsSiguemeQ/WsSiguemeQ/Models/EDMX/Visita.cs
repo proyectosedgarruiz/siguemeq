@@ -26,7 +26,5 @@ namespace WsSiguemeQ.Models.EDMX
         public Nullable<int> idResultadoVisita { get; set; }
         public Nullable<int> idTipoMedida { get; set; }
         public Nullable<int> idImposicionMedidaREPS { get; set; }
-    
-        public virtual Queja Queja { get; set; }
     }
 }

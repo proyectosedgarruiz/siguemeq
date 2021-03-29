@@ -170,15 +170,20 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParametricasController.cs" />
+    <Compile Include="Controllers\PersonasController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DTO\ParametricasRespuesta.cs" />
+    <Compile Include="Models\DTO\PersonasRespuesta.cs" />
     <Compile Include="Models\DTO\RespuestaBase.cs" />
     <Compile Include="Models\DTO\UsuariosRespuesta.cs" />
     <Compile Include="Models\EDMX\DBarrio.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\DEntidadRemitente.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EDMX\DFechaFestiva.cs">
@@ -205,7 +210,7 @@
     <Compile Include="Models\EDMX\DTipoIdentificacion.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EDMX\DTipoQueja.cs">
+    <Compile Include="Models\EDMX\DTipoRecepcionQueja.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EDMX\DTipoSolicitud.cs">
@@ -238,9 +243,6 @@
     <Compile Include="Models\EDMX\Persona.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EDMX\Queja.cs">
-      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\EDMX\SP_FIND_PRIVILEGIOROL_Result.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
@@ -253,7 +255,22 @@
     <Compile Include="Models\EDMX\SP_FIND_USUARIO_Result.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_BARRIO_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_ENTIDADREMITENTE_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EDMX\SP_LIST_ENTIDAD_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_LOCALIDAD_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_PERSONAAFECTADO_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_PERSONAQUEJOSO_Result.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EDMX\SP_LIST_PRIVILEGIOROL_Result.cs">
@@ -268,7 +285,16 @@
     <Compile Include="Models\EDMX\SP_LIST_ROL_Result.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_TIPOIDENTIFICACION_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_TIPORECEPCIONQUEJA_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EDMX\SP_LIST_TIPOSOLICITUD_Result.cs">
+      <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EDMX\SP_LIST_UPZ_Result.cs">
       <DependentUpon>ModelSiguemeQ.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EDMX\SP_LIST_USUARIO_Result.cs">
@@ -285,6 +311,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ParametricasService.cs" />
+    <Compile Include="Services\PersonasService.cs" />
     <Compile Include="Services\UsuariosService.cs" />
     <Compile Include="Services\Symmetric.cs" />
   </ItemGroup>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Roles, Usuarios, SubRedes, UsuariosLista, Publicas } from 'src/models/parametricas.model';
+import { Roles, Usuarios, UsuariosLista, Publicas } from 'src/models/parametricas.model';
 import { UsuarioService } from 'src/services/usuarios.service';
 import { ParametricasService } from 'src/services/parametricas.service';
 

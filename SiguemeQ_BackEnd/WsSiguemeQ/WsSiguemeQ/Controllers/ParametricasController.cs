@@ -91,20 +91,23 @@ namespace WsSiguemeQ.Controllers
 
 
 
-        #region Entidad
+    
 
 
-        //Obtener Lista Entidad
-        [Route("GetListaEntidad")]
+        #region Tipo Recepcion Queja
+
+
+        //Obtener Lista Tipo Recepcion Queja
+        [Route("GetListaTipoRecepcionQueja")]
         [HttpGet]
-        [ResponseType(typeof(ListaEntidad))]
-        public async Task<IHttpActionResult> GetListaEntidad(string token)
+        [ResponseType(typeof(ListaTipoRecepcionQueja))]
+        public async Task<IHttpActionResult> GetListaTipoRecepcionQueja(string token)
         {
             try
             {
                 if (token.Equals(keyToken))
                 {
-                    var respuesta = srvParametricas.GetListaEntidad();
+                    var respuesta = srvParametricas.GetListaTipoRecepcionQueja();
                     return Ok(respuesta);
                 }
                 else
@@ -112,7 +115,198 @@ namespace WsSiguemeQ.Controllers
             }
             catch (Exception e)
             {
-                string error = "Error desde el servicio GetListaEntidad" + e.Message;
+                string error = "Error desde el servicio GetListaTipoRecepcionQueja" + e.Message;
+                return Ok(error);
+            }
+        }
+
+
+
+
+        #endregion
+
+
+
+
+        #region Entidad Involucrada
+
+
+        //Obtener Lista Entidad Involucrada
+        [Route("GetListaEntidadInvolucrada")]
+        [HttpGet]
+        [ResponseType(typeof(ListaEntidadInvolucrada))]
+        public async Task<IHttpActionResult> GetListaEntidadInvolucrada(string token)
+        {
+            try
+            {
+                if (token.Equals(keyToken))
+                {
+                    var respuesta = srvParametricas.GetListaEntidadInvolucrada();
+                    return Ok(respuesta);
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                string error = "Error desde el servicio GetListaEntidadInvolucrada" + e.Message;
+                return Ok(error);
+            }
+        }
+
+
+
+
+        #endregion
+
+        #region Entidad Remitente
+
+
+        //Obtener Lista Entidad Remitente
+        [Route("GetListaEntidadRemitente")]
+        [HttpGet]
+        [ResponseType(typeof(ListaEntidadRemitente))]
+        public async Task<IHttpActionResult> GetListaEntidadRemitente(string token)
+        {
+            try
+            {
+                if (token.Equals(keyToken))
+                {
+                    var respuesta = srvParametricas.GetListaEntidadRemitente();
+                    return Ok(respuesta);
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                string error = "Error desde el servicio GetListaEntidadRemitente" + e.Message;
+                return Ok(error);
+            }
+        }
+
+
+
+
+        #endregion
+
+
+
+        #region TipoIdentificacion
+
+
+        //Obtener Lista TipoIdentificacion
+        [Route("GetListaTipoIdentificacion")]
+        [HttpGet]
+        [ResponseType(typeof(ListaTipoIdentificacion))]
+        public async Task<IHttpActionResult> GetListaTipoIdentificacion(string token)
+        {
+            try
+            {
+                if (token.Equals(keyToken))
+                {
+                    var respuesta = srvParametricas.GetListaTipoIdentificacion();
+                    return Ok(respuesta);
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                string error = "Error desde el servicio GetListaTipoIdentificacion" + e.Message;
+                return Ok(error);
+            }
+        }
+
+
+
+
+        #endregion
+
+
+
+
+        #region ListaLocalidad
+
+
+        //Obtener Lista Localidad
+        [Route("GetListaLocalidad")]
+        [HttpGet]
+        [ResponseType(typeof(ListaLocalidad))]
+        public async Task<IHttpActionResult> GetListaLocalidad(string token)
+        {
+            try
+            {
+                if (token.Equals(keyToken))
+                {
+                    var respuesta = srvParametricas.GetListaLocalidad();
+                    return Ok(respuesta);
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                string error = "Error desde el servicio GetListaLocalidad" + e.Message;
+                return Ok(error);
+            }
+        }
+
+
+
+
+        #endregion
+
+        #region ListaUPZ
+        //Obtener Lista UPZ
+        [Route("GetListaUPZ")]
+        [HttpGet]
+        [ResponseType(typeof(ListaUPZ))]
+        public async Task<IHttpActionResult> GetListaUPZ(string token, int idlocalidad)
+        {
+            try
+            {
+                if (token.Equals(keyToken))
+                {
+                    var respuesta = srvParametricas.GetListaUPZ(idlocalidad);
+                    return Ok(respuesta);
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                string error = "Error desde el servicio GetListaUPZ" + e.Message;
+                return Ok(error);
+            }
+        }
+
+
+
+
+        #endregion
+
+
+        #region ListaBarrio
+        //Obtener Lista Barrio
+        [Route("GetListaBarrio")]
+        [HttpGet]
+        [ResponseType(typeof(ListaBarrio))]
+        public async Task<IHttpActionResult> GetListaBarrio(string token, int idupz)
+        {
+            try
+            {
+                if (token.Equals(keyToken))
+                {
+                    var respuesta = srvParametricas.GetListaBarrio(idupz);
+                    return Ok(respuesta);
+                }
+                else
+                    return null;
+            }
+            catch (Exception e)
+            {
+                string error = "Error desde el servicio GetListaBarrio" + e.Message;
                 return Ok(error);
             }
         }

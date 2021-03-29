@@ -10,17 +10,11 @@
 namespace WsSiguemeQ.Models.EDMX
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_LIST_PRIVILEGIOSBYROL_Result
+    public partial class DEntidadRemitente
     {
-        public int idPrivilegioRol { get; set; }
-        public int idPrivilegio { get; set; }
-        public string descripcionPrivilegio { get; set; }
-        public string componente { get; set; }
-        public int idRol { get; set; }
-        public string descripcionRol { get; set; }
-        public int idModulo { get; set; }
-        public string descripcionModulo { get; set; }
-        public int orden { get; set; }
+        public int idEntidadRemitente { get; set; }
+        public string descripcion { get; set; }
     }
 }

@@ -14,19 +14,11 @@ namespace WsSiguemeQ.Models.EDMX
     
     public partial class Entidad_Servicio
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Entidad_Servicio()
-        {
-            this.Queja = new HashSet<Queja>();
-        }
-    
         public long idEntidadServicio { get; set; }
         public long idEntidad { get; set; }
         public int idServicio { get; set; }
     
         public virtual DServicio DServicio { get; set; }
         public virtual Entidad Entidad { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Queja> Queja { get; set; }
     }
 }

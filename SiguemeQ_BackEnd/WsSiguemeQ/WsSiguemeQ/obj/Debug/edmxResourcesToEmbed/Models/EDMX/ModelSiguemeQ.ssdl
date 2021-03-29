@@ -14,6 +14,13 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DBarrio' no tiene de
     <Property Name="descripcionBarrio" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="activoBarrio" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="DEntidadRemitente">
+    <Key>
+      <PropertyRef Name="idEntidadRemitente" />
+    </Key>
+    <Property Name="idEntidadRemitente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
+  </EntityType>
   <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DFechaFestiva' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="DFechaFestiva">
@@ -49,7 +56,7 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DLocalidad' no tiene
     <Key>
       <PropertyRef Name="idPrivilegioRol" />
     </Key>
-    <Property Name="idPrivilegioRol" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPrivilegioRol" Type="int" Nullable="false" />
     <Property Name="idPrivilegio" Type="int" Nullable="false" />
     <Property Name="idRol" Type="int" Nullable="false" />
   </EntityType>
@@ -57,7 +64,7 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DLocalidad' no tiene
     <Key>
       <PropertyRef Name="idPrivilegio" />
     </Key>
-    <Property Name="idPrivilegio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idPrivilegio" Type="int" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="componente" Type="nvarchar" MaxLength="256" Nullable="false" />
     <Property Name="idModulo" Type="int" Nullable="false" />
@@ -91,12 +98,12 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoIdentificacion'
     <Property Name="activo" Type="bit" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoQueja' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-  <EntityType Name="DTipoQueja">
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoRecepcionQueja' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="DTipoRecepcionQueja">
     <Key>
-      <PropertyRef Name="idTipoQueja" />
+      <PropertyRef Name="idTipoRecepcionQueja" />
     </Key>
-    <Property Name="idTipoQueja" Type="int" Nullable="false" />
+    <Property Name="idTipoRecepcionQueja" Type="int" Nullable="false" />
     <Property Name="descripcion" Type="varchar" MaxLength="255" />
     <Property Name="activo" Type="bit" />
   </EntityType>
@@ -183,35 +190,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     <Property Name="fechaCreado" Type="datetime" Nullable="false" />
     <Property Name="fechaModificado" Type="datetime" />
     <Property Name="usrCreado" Type="nvarchar" MaxLength="256" Nullable="false" />
-    <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
-  </EntityType>
-  <EntityType Name="Queja">
-    <Key>
-      <PropertyRef Name="idQueja" />
-    </Key>
-    <Property Name="idQueja" Type="bigint" Nullable="false" />
-    <Property Name="idTipoSolicitud" Type="int" />
-    <Property Name="numeroRadicadoQueja" Type="nvarchar" MaxLength="50" />
-    <Property Name="fechaRadicadoQueja" Type="date" />
-    <Property Name="fechaLimiteRespuesta" Type="date" />
-    <Property Name="idEntidadRemitente" Type="int" />
-    <Property Name="numeroRadicadoAtencionUsuario" Type="nvarchar" MaxLength="50" />
-    <Property Name="idTipoRecepcionQueja" Type="int" />
-    <Property Name="idPersonaQuejoso" Type="bigint" />
-    <Property Name="idPersonaAfectado" Type="bigint" />
-    <Property Name="idEntidadServicioInvolucrada" Type="bigint" />
-    <Property Name="motivoQueja" Type="nvarchar(max)" />
-    <Property Name="radicadosRelacionados" Type="nvarchar(max)" />
-    <Property Name="idPalabrasClaves" Type="int" />
-    <Property Name="idCaracteristicasEspeciales" Type="int" Nullable="false" />
-    <Property Name="idTipoDireccionamiento" Type="int" />
-    <Property Name="idGrupoEntrega" Type="int" />
-    <Property Name="foliosEntrega" Type="int" />
-    <Property Name="fechaEntrega" Type="date" />
-    <Property Name="idEstadoQueja" Type="int" />
-    <Property Name="fechaCreado" Type="datetime" />
-    <Property Name="fechaActualizado" Type="datetime" />
-    <Property Name="usrCreado" Type="nvarchar" MaxLength="256" />
     <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -303,42 +281,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Queja_Entidad_Servicio">
-    <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="0..1" />
-    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Entidad_Servicio">
-        <PropertyRef Name="idEntidadServicio" />
-      </Principal>
-      <Dependent Role="Queja">
-        <PropertyRef Name="idEntidadServicioInvolucrada" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Queja_Persona">
-    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="idPersona" />
-      </Principal>
-      <Dependent Role="Queja">
-        <PropertyRef Name="idPersonaQuejoso" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Queja_Persona1">
-    <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-    <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="idPersona" />
-      </Principal>
-      <Dependent Role="Queja">
-        <PropertyRef Name="idPersonaAfectado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Usuarios_Roles">
     <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
     <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -351,18 +293,26 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Visita_Queja">
-    <End Role="Queja" Type="Self.Queja" Multiplicity="0..1" />
-    <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Queja">
-        <PropertyRef Name="idQueja" />
-      </Principal>
-      <Dependent Role="Visita">
-        <PropertyRef Name="idQueja" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <Function Name="SP_ADD_PERSONA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idPersona" Type="bigint" Mode="In" />
+    <Parameter Name="idTipoIdentificacion" Type="nchar" Mode="In" />
+    <Parameter Name="numeroIdentificacion" Type="nvarchar" Mode="In" />
+    <Parameter Name="digitoVerificacion" Type="int" Mode="In" />
+    <Parameter Name="primerNombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="segundoNombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="primerApellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="segundoApellido" Type="nvarchar" Mode="In" />
+    <Parameter Name="direccion" Type="nvarchar" Mode="In" />
+    <Parameter Name="idTipoDireccion" Type="int" Mode="In" />
+    <Parameter Name="idLocalidad" Type="int" Mode="In" />
+    <Parameter Name="idBarrio" Type="nchar" Mode="In" />
+    <Parameter Name="idUpz" Type="int" Mode="In" />
+    <Parameter Name="telefono1" Type="nvarchar" Mode="In" />
+    <Parameter Name="telefono2" Type="nvarchar" Mode="In" />
+    <Parameter Name="correoElectronico" Type="nvarchar" Mode="In" />
+    <Parameter Name="usrCreado" Type="nvarchar" Mode="In" />
+    <Parameter Name="usrModificado" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="SP_ADD_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
     <Parameter Name="componente" Type="nvarchar" Mode="In" />
@@ -397,14 +347,26 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
     <Parameter Name="password" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="SP_LIST_BARRIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idupz" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_LIST_ENTIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_ENTIDADREMITENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_LOCALIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_PERSONAAFECTADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_PERSONAQUEJOSO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_LIST_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_LIST_PRIVILEGIOROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_LIST_PRIVILEGIOSBYROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idRol" Type="int" Mode="In" />
   </Function>
   <Function Name="SP_LIST_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_TIPOIDENTIFICACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_TIPORECEPCIONQUEJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_LIST_TIPOSOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_LIST_UPZ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idlocalidad" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_LIST_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_UPD_CLAVE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
@@ -435,6 +397,7 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     <Parameter Name="idRol" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="SiguemeQ_DesarrolloModelStoreContainer">
+    <EntitySet Name="DEntidadRemitente" EntityType="Self.DEntidadRemitente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DModulos" EntityType="Self.DModulos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DPrivilegioRol" EntityType="Self.DPrivilegioRol" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DPrivilegios" EntityType="Self.DPrivilegios" Schema="dbo" store:Type="Tables" />
@@ -443,7 +406,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Entidad_Servicio" EntityType="Self.Entidad_Servicio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Queja" EntityType="Self.Queja" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Visita" EntityType="Self.Visita" Schema="dbo" store:Type="Tables" />
@@ -476,12 +438,12 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     [DTipoIdentificacion].[activo] AS [activo]
     FROM [dbo].[DTipoIdentificacion] AS [DTipoIdentificacion]</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="DTipoQueja" EntityType="Self.DTipoQueja" store:Type="Tables" store:Schema="dbo">
+    <EntitySet Name="DTipoRecepcionQueja" EntityType="Self.DTipoRecepcionQueja" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
-    [DTipoQueja].[idTipoQueja] AS [idTipoQueja], 
-    [DTipoQueja].[descripcion] AS [descripcion], 
-    [DTipoQueja].[activo] AS [activo]
-    FROM [dbo].[DTipoQueja] AS [DTipoQueja]</DefiningQuery>
+    [DTipoRecepcionQueja].[idTipoRecepcionQueja] AS [idTipoRecepcionQueja], 
+    [DTipoRecepcionQueja].[descripcion] AS [descripcion], 
+    [DTipoRecepcionQueja].[activo] AS [activo]
+    FROM [dbo].[DTipoRecepcionQueja] AS [DTipoRecepcionQueja]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="DTipoSolicitud" EntityType="Self.DTipoSolicitud" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -514,25 +476,9 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
       <End Role="DRoles" EntitySet="DRoles" />
       <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
     </AssociationSet>
-    <AssociationSet Name="FK_Queja_Entidad_Servicio" Association="Self.FK_Queja_Entidad_Servicio">
-      <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
-      <End Role="Queja" EntitySet="Queja" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Queja_Persona" Association="Self.FK_Queja_Persona">
-      <End Role="Persona" EntitySet="Persona" />
-      <End Role="Queja" EntitySet="Queja" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Queja_Persona1" Association="Self.FK_Queja_Persona1">
-      <End Role="Persona" EntitySet="Persona" />
-      <End Role="Queja" EntitySet="Queja" />
-    </AssociationSet>
     <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
       <End Role="DRoles" EntitySet="DRoles" />
       <End Role="Usuarios" EntitySet="Usuarios" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Visita_Queja" Association="Self.FK_Visita_Queja">
-      <End Role="Queja" EntitySet="Queja" />
-      <End Role="Visita" EntitySet="Visita" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

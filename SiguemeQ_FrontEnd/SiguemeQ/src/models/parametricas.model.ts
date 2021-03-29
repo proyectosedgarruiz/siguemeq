@@ -1,114 +1,138 @@
 
 export class TipoSolicitud {
-    constructor(
-        public idTipoSolicitud: number,
-        public descripcion: string
-    ) { }
+        public idTipoSolicitud: number;
+        public descripcion: string;
+   
+}
+
+export class EntidadRemitente {
+        public idEntidadRemitente: number;
+        public descripcion: string;
 }
 
 
-export class Entidad {
-    constructor(
-        public idEntidad: number,
-        public nombreEntidad: string
-    ) { }
+export class EntidadInvolucrada {
+        public idEntidad: number;
+        public nombreEntidad: string;
+}
+
+
+
+export class TipoRecepcionQueja {
+        public idTipoRecepcionQueja: number;
+        public descripcion: string;
+}
+
+export class PersonaQuejoso {
+        public idPersona: number;
+        public idTipoIdentificacion: string;
+        public numeroIdentificacion : string;
+        public digitoVerificacion : number;
+        public primerNombre : string;
+        public segundoNombre : string;
+        public primerApellido : string;
+        public segundoApellido : string;
+        public nombresApellidos: string;
+        public direccion : string;
+        public idTipoDireccion : number;
+        public idLocalidad : number;
+        public idBarrio : number;
+        public idUpz : number;
+        public telefono1: string;
+        public telefono2: string;
+        public correoElectronico : string;
+        public usrCreado : string;
+        public usrModificado : string;
+
+  
+}
+
+
+export class PersonaAfectado {
+    public idPersona: number;
+    public idTipoIdentificacion: string;
+    public numeroIdentificacion : string;
+    public digitoVerificacion : number;
+    public primerNombre : string;
+    public segundoNombre : string;
+    public primerApellido : string;
+    public segundoApellido : string;
+    public nombresApellidos: string;
+    public direccion : string;
+    public idTipoDireccion : number;
+    public idLocalidad : number;
+    public idBarrio : number;
+    public idUpz : number;
+    public telefono1: string;
+    public telefono2: string;
+    public correoElectronico : string;
+}
+
+
+
+export class TipoIdentificacion {
+        public idTipoIdentificacion: number;
+        public descripcion: string;
+
+}
+
+export class Localidad {
+    public idLocalidad: number;
+    public descripcionLocalidad: string;
+
+}
+
+export class UPZ {
+    public idUpz: number;
+    public descripcionUpz: string;
+    public idLocalidad : number;
+
+}
+
+export class Barrio {
+    public idBarrio: number;
+    public descripcionBarrio: string;
+    public idUpz : number;
+
 }
 
 
 export class Queja {
-    constructor(
-        public idQueja: number,
-        public idTipoSolicitud: number,
-        public numeroRadicadoQueja : string,
-        public fechaRadicadoQueja : string,
-        public fechaLimiteRespuesta : string,
-        public idEntidadRemitente : number
-    ) { }
+
+        public idQueja: number;
+        public idTipoSolicitud: number;
+        public numeroRadicadoQueja : string;
+        public fechaRadicadoQueja : string;
+        public fechaLimiteRespuesta : string;
+        public idEntidadRemitente : number;
+        public numeroRadicadoAtencionUsuario : string;
+        public idTipoRecepcionQueja : number;
+        public idPersonaQuejoso : number;
+        public idPersonaAfectado : number;
+
 }
 
 
 export class Convocatoria {
-    constructor(
-        public con_id: number,
-        public con_nombre: string,
-        public con_fechainicio : Date,
-        public con_horainicio : string,
-        public con_fechafinal : Date,
-        public con_horafinal : string,
-        public con_estado : string
+        public con_id: number;
+        public con_nombre: string;
+        public con_fechainicio : Date;
+        public con_horainicio : string;
+        public con_fechafinal : Date;
+        public con_horafinal : string;
+        public con_estado : string;
 
-    ) { }
 }
 
 
 export class Localidades {
-    constructor(
-        public loc_id: number,
-        public loc_nombre: string,
-        public loc_codigo: number,
-        public loc_estado: string
-    ) { }
-}
-
-export class Municipios {
-    constructor(
-        public mun_id: number,
-        public mun_nombre: string
-    ) { }
+        public loc_id: number;
+        public loc_nombre: string;
+        public loc_codigo: number;
+        public loc_estado: string;
 }
 
 
-export class Departamentos {
-    constructor(
-        public dep_id: number,
-        public dep_nombre: string
-    ) { }
-}
-
-export class Profesiones {
-    constructor(
-        public pro_id: number,
-        public pro_nombre: string,
-    ) { }
-}
-
-
-export class HorasFormacion {
-    constructor(
-        public hor_id: number,
-        public hor_nombre: string,
-    ) { }
-}
-
-
-export class PrecioConsulta {
-    constructor(
-        public pre_id: number,
-        public pre_nombre: string,
-    ) { }
-}
-
-export class TipoDocumento {
-    constructor(
-        public tpd_id: number,
-        public tpd_nombre: string,
-    ) { }
-}
-
-export class CriterioPriorizacionMuestra {
-    constructor(
-        public cpm_id: number,
-        public cpm_nombre: string,
-    ) { }
-}
-
-
-export class SubRedes {
-    constructor(
-        public sub_id: number,
-        public sub_nombre: string,
-    ) { }
-}
 
 
 export class Roles {
@@ -181,6 +205,7 @@ export class Publicas {
 
         public autorized : boolean,
         public idUsuario: string,
+        public loginUsuario: string,
         public nombre: string,
         public idRol: number,
         public descripcionRol : string        

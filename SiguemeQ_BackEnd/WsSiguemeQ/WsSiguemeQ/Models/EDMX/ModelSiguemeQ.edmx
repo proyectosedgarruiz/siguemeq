@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SiguemeQ_DesarrolloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SiguemeQ_DesarrolloModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DBarrio' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="DBarrio">
@@ -18,6 +18,13 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DBarrio' no tiene de
           <Property Name="idUpz" Type="int" Nullable="false" />
           <Property Name="descripcionBarrio" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="activoBarrio" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DEntidadRemitente">
+          <Key>
+            <PropertyRef Name="idEntidadRemitente" />
+          </Key>
+          <Property Name="idEntidadRemitente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DFechaFestiva' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -54,7 +61,7 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DLocalidad' no tiene
           <Key>
             <PropertyRef Name="idPrivilegioRol" />
           </Key>
-          <Property Name="idPrivilegioRol" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idPrivilegioRol" Type="int" Nullable="false" />
           <Property Name="idPrivilegio" Type="int" Nullable="false" />
           <Property Name="idRol" Type="int" Nullable="false" />
         </EntityType>
@@ -62,7 +69,7 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DLocalidad' no tiene
           <Key>
             <PropertyRef Name="idPrivilegio" />
           </Key>
-          <Property Name="idPrivilegio" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idPrivilegio" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="componente" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="idModulo" Type="int" Nullable="false" />
@@ -96,12 +103,12 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoIdentificacion'
           <Property Name="activo" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoQueja' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="DTipoQueja">
+advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DTipoRecepcionQueja' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="DTipoRecepcionQueja">
           <Key>
-            <PropertyRef Name="idTipoQueja" />
+            <PropertyRef Name="idTipoRecepcionQueja" />
           </Key>
-          <Property Name="idTipoQueja" Type="int" Nullable="false" />
+          <Property Name="idTipoRecepcionQueja" Type="int" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="255" />
           <Property Name="activo" Type="bit" />
         </EntityType>
@@ -188,35 +195,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Name="fechaCreado" Type="datetime" Nullable="false" />
           <Property Name="fechaModificado" Type="datetime" />
           <Property Name="usrCreado" Type="nvarchar" MaxLength="256" Nullable="false" />
-          <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
-        </EntityType>
-        <EntityType Name="Queja">
-          <Key>
-            <PropertyRef Name="idQueja" />
-          </Key>
-          <Property Name="idQueja" Type="bigint" Nullable="false" />
-          <Property Name="idTipoSolicitud" Type="int" />
-          <Property Name="numeroRadicadoQueja" Type="nvarchar" MaxLength="50" />
-          <Property Name="fechaRadicadoQueja" Type="date" />
-          <Property Name="fechaLimiteRespuesta" Type="date" />
-          <Property Name="idEntidadRemitente" Type="int" />
-          <Property Name="numeroRadicadoAtencionUsuario" Type="nvarchar" MaxLength="50" />
-          <Property Name="idTipoRecepcionQueja" Type="int" />
-          <Property Name="idPersonaQuejoso" Type="bigint" />
-          <Property Name="idPersonaAfectado" Type="bigint" />
-          <Property Name="idEntidadServicioInvolucrada" Type="bigint" />
-          <Property Name="motivoQueja" Type="nvarchar(max)" />
-          <Property Name="radicadosRelacionados" Type="nvarchar(max)" />
-          <Property Name="idPalabrasClaves" Type="int" />
-          <Property Name="idCaracteristicasEspeciales" Type="int" Nullable="false" />
-          <Property Name="idTipoDireccionamiento" Type="int" />
-          <Property Name="idGrupoEntrega" Type="int" />
-          <Property Name="foliosEntrega" Type="int" />
-          <Property Name="fechaEntrega" Type="date" />
-          <Property Name="idEstadoQueja" Type="int" />
-          <Property Name="fechaCreado" Type="datetime" />
-          <Property Name="fechaActualizado" Type="datetime" />
-          <Property Name="usrCreado" Type="nvarchar" MaxLength="256" />
           <Property Name="usrModificado" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -308,42 +286,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Queja_Entidad_Servicio">
-          <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="0..1" />
-          <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entidad_Servicio">
-              <PropertyRef Name="idEntidadServicio" />
-            </Principal>
-            <Dependent Role="Queja">
-              <PropertyRef Name="idEntidadServicioInvolucrada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Queja_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-          <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="idPersona" />
-            </Principal>
-            <Dependent Role="Queja">
-              <PropertyRef Name="idPersonaQuejoso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Queja_Persona1">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-          <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="idPersona" />
-            </Principal>
-            <Dependent Role="Queja">
-              <PropertyRef Name="idPersonaAfectado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Usuarios_Roles">
           <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
           <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
@@ -356,18 +298,26 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Visita_Queja">
-          <End Role="Queja" Type="Self.Queja" Multiplicity="0..1" />
-          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Queja">
-              <PropertyRef Name="idQueja" />
-            </Principal>
-            <Dependent Role="Visita">
-              <PropertyRef Name="idQueja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <Function Name="SP_ADD_PERSONA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idPersona" Type="bigint" Mode="In" />
+          <Parameter Name="idTipoIdentificacion" Type="nchar" Mode="In" />
+          <Parameter Name="numeroIdentificacion" Type="nvarchar" Mode="In" />
+          <Parameter Name="digitoVerificacion" Type="int" Mode="In" />
+          <Parameter Name="primerNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="segundoNombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="primerApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="segundoApellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="direccion" Type="nvarchar" Mode="In" />
+          <Parameter Name="idTipoDireccion" Type="int" Mode="In" />
+          <Parameter Name="idLocalidad" Type="int" Mode="In" />
+          <Parameter Name="idBarrio" Type="nchar" Mode="In" />
+          <Parameter Name="idUpz" Type="int" Mode="In" />
+          <Parameter Name="telefono1" Type="nvarchar" Mode="In" />
+          <Parameter Name="telefono2" Type="nvarchar" Mode="In" />
+          <Parameter Name="correoElectronico" Type="nvarchar" Mode="In" />
+          <Parameter Name="usrCreado" Type="nvarchar" Mode="In" />
+          <Parameter Name="usrModificado" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SP_ADD_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="descripcion" Type="nvarchar" Mode="In" />
           <Parameter Name="componente" Type="nvarchar" Mode="In" />
@@ -402,14 +352,26 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
           <Parameter Name="password" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SP_LIST_BARRIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idupz" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_LIST_ENTIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_ENTIDADREMITENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_LOCALIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_PERSONAAFECTADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_PERSONAQUEJOSO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_LIST_PRIVILEGIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_LIST_PRIVILEGIOROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_LIST_PRIVILEGIOSBYROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idRol" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_LIST_ROL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_TIPOIDENTIFICACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_TIPORECEPCIONQUEJA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_LIST_TIPOSOLICITUD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_LIST_UPZ" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idlocalidad" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_LIST_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_UPD_CLAVE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuario" Type="nvarchar" Mode="In" />
@@ -440,6 +402,7 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Parameter Name="idRol" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="SiguemeQ_DesarrolloModelStoreContainer">
+          <EntitySet Name="DEntidadRemitente" EntityType="Self.DEntidadRemitente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DModulos" EntityType="Self.DModulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DPrivilegioRol" EntityType="Self.DPrivilegioRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DPrivilegios" EntityType="Self.DPrivilegios" Schema="dbo" store:Type="Tables" />
@@ -448,7 +411,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <EntitySet Name="Entidad" EntityType="Self.Entidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Entidad_Servicio" EntityType="Self.Entidad_Servicio" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Queja" EntityType="Self.Queja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visita" EntityType="Self.Visita" Schema="dbo" store:Type="Tables" />
@@ -481,12 +443,12 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     [DTipoIdentificacion].[activo] AS [activo]
     FROM [dbo].[DTipoIdentificacion] AS [DTipoIdentificacion]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="DTipoQueja" EntityType="Self.DTipoQueja" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="DTipoRecepcionQueja" EntityType="Self.DTipoRecepcionQueja" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [DTipoQueja].[idTipoQueja] AS [idTipoQueja], 
-    [DTipoQueja].[descripcion] AS [descripcion], 
-    [DTipoQueja].[activo] AS [activo]
-    FROM [dbo].[DTipoQueja] AS [DTipoQueja]</DefiningQuery>
+    [DTipoRecepcionQueja].[idTipoRecepcionQueja] AS [idTipoRecepcionQueja], 
+    [DTipoRecepcionQueja].[descripcion] AS [descripcion], 
+    [DTipoRecepcionQueja].[activo] AS [activo]
+    FROM [dbo].[DTipoRecepcionQueja] AS [DTipoRecepcionQueja]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DTipoSolicitud" EntityType="Self.DTipoSolicitud" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -519,40 +481,50 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             <End Role="DRoles" EntitySet="DRoles" />
             <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
           </AssociationSet>
-          <AssociationSet Name="FK_Queja_Entidad_Servicio" Association="Self.FK_Queja_Entidad_Servicio">
-            <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
-            <End Role="Queja" EntitySet="Queja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Queja_Persona" Association="Self.FK_Queja_Persona">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="Queja" EntitySet="Queja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Queja_Persona1" Association="Self.FK_Queja_Persona1">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="Queja" EntitySet="Queja" />
-          </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
             <End Role="DRoles" EntitySet="DRoles" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
-          <AssociationSet Name="FK_Visita_Queja" Association="Self.FK_Visita_Queja">
-            <End Role="Queja" EntitySet="Queja" />
-            <End Role="Visita" EntitySet="Visita" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SiguemeQ_DesarrolloModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DEntidadRemitente">
+          <Key>
+            <PropertyRef Name="idEntidadRemitente" />
+          </Key>
+          <Property Name="idEntidadRemitente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DModulos">
+          <Key>
+            <PropertyRef Name="idModulo" />
+          </Key>
+          <Property Name="idModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
         <EntityType Name="DPrivilegioRol">
           <Key>
             <PropertyRef Name="idPrivilegioRol" />
           </Key>
-          <Property Name="idPrivilegioRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPrivilegioRol" Type="Int32" Nullable="false" />
           <Property Name="idPrivilegio" Type="Int32" Nullable="false" />
           <Property Name="idRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DPrivilegios" Relationship="Self.FK_PrivilegioRol_Privilegios" FromRole="DPrivilegioRol" ToRole="DPrivilegios" />
           <NavigationProperty Name="DRoles" Relationship="Self.FK_PrivilegioRol_Roles" FromRole="DPrivilegioRol" ToRole="DRoles" />
-          <NavigationProperty Name="DPrivilegios" Relationship="SiguemeQ_DesarrolloModel.FK_PrivilegioRol_Privilegios" FromRole="DPrivilegioRol" ToRole="DPrivilegios" />
+        </EntityType>
+        <EntityType Name="DPrivilegios">
+          <Key>
+            <PropertyRef Name="idPrivilegio" />
+          </Key>
+          <Property Name="idPrivilegio" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="componente" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idModulo" Type="Int32" Nullable="false" />
+          <Property Name="orden" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DPrivilegioRol" Relationship="Self.FK_PrivilegioRol_Privilegios" FromRole="DPrivilegios" ToRole="DPrivilegioRol" />
         </EntityType>
         <EntityType Name="DRoles">
           <Key>
@@ -609,7 +581,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Name="idServicio" Type="Int32" Nullable="false" />
           <NavigationProperty Name="DServicio" Relationship="Self.FK_Entidad_Servicio_DServicio" FromRole="Entidad_Servicio" ToRole="DServicio" />
           <NavigationProperty Name="Entidad" Relationship="Self.FK_Entidad_Servicio_Entidad" FromRole="Entidad_Servicio" ToRole="Entidad" />
-          <NavigationProperty Name="Queja" Relationship="Self.FK_Queja_Entidad_Servicio" FromRole="Entidad_Servicio" ToRole="Queja" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -636,41 +607,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Name="fechaModificado" Type="DateTime" Precision="3" />
           <Property Name="usrCreado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="usrModificado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Queja" Relationship="Self.FK_Queja_Persona" FromRole="Persona" ToRole="Queja" />
-          <NavigationProperty Name="Queja1" Relationship="Self.FK_Queja_Persona1" FromRole="Persona" ToRole="Queja" />
-        </EntityType>
-        <EntityType Name="Queja">
-          <Key>
-            <PropertyRef Name="idQueja" />
-          </Key>
-          <Property Name="idQueja" Type="Int64" Nullable="false" />
-          <Property Name="idTipoSolicitud" Type="Int32" />
-          <Property Name="numeroRadicadoQueja" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="fechaRadicadoQueja" Type="DateTime" Precision="0" />
-          <Property Name="fechaLimiteRespuesta" Type="DateTime" Precision="0" />
-          <Property Name="idEntidadRemitente" Type="Int32" />
-          <Property Name="numeroRadicadoAtencionUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="idTipoRecepcionQueja" Type="Int32" />
-          <Property Name="idPersonaQuejoso" Type="Int64" />
-          <Property Name="idPersonaAfectado" Type="Int64" />
-          <Property Name="idEntidadServicioInvolucrada" Type="Int64" />
-          <Property Name="motivoQueja" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="radicadosRelacionados" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="idPalabrasClaves" Type="Int32" />
-          <Property Name="idCaracteristicasEspeciales" Type="Int32" Nullable="false" />
-          <Property Name="idTipoDireccionamiento" Type="Int32" />
-          <Property Name="idGrupoEntrega" Type="Int32" />
-          <Property Name="foliosEntrega" Type="Int32" />
-          <Property Name="fechaEntrega" Type="DateTime" Precision="0" />
-          <Property Name="idEstadoQueja" Type="Int32" />
-          <Property Name="fechaCreado" Type="DateTime" Precision="3" />
-          <Property Name="fechaActualizado" Type="DateTime" Precision="3" />
-          <Property Name="usrCreado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="usrModificado" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Entidad_Servicio" Relationship="Self.FK_Queja_Entidad_Servicio" FromRole="Queja" ToRole="Entidad_Servicio" />
-          <NavigationProperty Name="Persona" Relationship="Self.FK_Queja_Persona" FromRole="Queja" ToRole="Persona" />
-          <NavigationProperty Name="Persona1" Relationship="Self.FK_Queja_Persona1" FromRole="Queja" ToRole="Persona" />
-          <NavigationProperty Name="Visita" Relationship="Self.FK_Visita_Queja" FromRole="Queja" ToRole="Visita" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -713,7 +649,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Name="idResultadoVisita" Type="Int32" />
           <Property Name="idTipoMedida" Type="Int32" />
           <Property Name="idImposicionMedidaREPS" Type="Int32" />
-          <NavigationProperty Name="Queja" Relationship="Self.FK_Visita_Queja" FromRole="Visita" ToRole="Queja" />
         </EntityType>
         <EntityType Name="DBarrio">
           <Key>
@@ -757,11 +692,19 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="DTipoQueja">
+        <EntityType Name="DTipoRecepcionQueja">
           <Key>
-            <PropertyRef Name="idTipoQueja" />
+            <PropertyRef Name="idTipoRecepcionQueja" />
           </Key>
-          <Property Name="idTipoQueja" Type="Int32" Nullable="false" />
+          <Property Name="idTipoRecepcionQueja" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="activo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DTipoSolicitud">
+          <Key>
+            <PropertyRef Name="idTipoSolicitud" />
+          </Key>
+          <Property Name="idTipoSolicitud" Type="Int32" Nullable="false" />
           <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="activo" Type="Boolean" />
         </EntityType>
@@ -777,6 +720,18 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Name="descripcionUpz" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activoUpz" Type="Boolean" Nullable="false" />
         </EntityType>
+        <Association Name="FK_PrivilegioRol_Privilegios">
+          <End Role="DPrivilegios" Type="Self.DPrivilegios" Multiplicity="1" />
+          <End Role="DPrivilegioRol" Type="Self.DPrivilegioRol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DPrivilegios">
+              <PropertyRef Name="idPrivilegio" />
+            </Principal>
+            <Dependent Role="DPrivilegioRol">
+              <PropertyRef Name="idPrivilegio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PrivilegioRol_Roles">
           <End Role="DRoles" Type="Self.DRoles" Multiplicity="1" />
           <End Role="DPrivilegioRol" Type="Self.DPrivilegioRol" Multiplicity="*" />
@@ -825,62 +780,16 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Queja_Entidad_Servicio">
-          <End Role="Entidad_Servicio" Type="Self.Entidad_Servicio" Multiplicity="0..1" />
-          <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Entidad_Servicio">
-              <PropertyRef Name="idEntidadServicio" />
-            </Principal>
-            <Dependent Role="Queja">
-              <PropertyRef Name="idEntidadServicioInvolucrada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Queja_Persona">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-          <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="idPersona" />
-            </Principal>
-            <Dependent Role="Queja">
-              <PropertyRef Name="idPersonaQuejoso" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Queja_Persona1">
-          <End Role="Persona" Type="Self.Persona" Multiplicity="0..1" />
-          <End Role="Queja" Type="Self.Queja" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Persona">
-              <PropertyRef Name="idPersona" />
-            </Principal>
-            <Dependent Role="Queja">
-              <PropertyRef Name="idPersonaAfectado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Visita_Queja">
-          <End Role="Queja" Type="Self.Queja" Multiplicity="0..1" />
-          <End Role="Visita" Type="Self.Visita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Queja">
-              <PropertyRef Name="idQueja" />
-            </Principal>
-            <Dependent Role="Visita">
-              <PropertyRef Name="idQueja" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SiguemeQ_DesarrolloEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DEntidadRemitente" EntityType="Self.DEntidadRemitente" />
+          <EntitySet Name="DModulos" EntityType="Self.DModulos" />
           <EntitySet Name="DPrivilegioRol" EntityType="Self.DPrivilegioRol" />
+          <EntitySet Name="DPrivilegios" EntityType="Self.DPrivilegios" />
           <EntitySet Name="DRoles" EntityType="Self.DRoles" />
           <EntitySet Name="DServicio" EntityType="Self.DServicio" />
           <EntitySet Name="Entidad" EntityType="Self.Entidad" />
           <EntitySet Name="Entidad_Servicio" EntityType="Self.Entidad_Servicio" />
           <EntitySet Name="Persona" EntityType="Self.Persona" />
-          <EntitySet Name="Queja" EntityType="Self.Queja" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
           <EntitySet Name="Visita" EntityType="Self.Visita" />
@@ -888,8 +797,13 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <EntitySet Name="DFechaFestiva" EntityType="Self.DFechaFestiva" />
           <EntitySet Name="DLocalidad" EntityType="Self.DLocalidad" />
           <EntitySet Name="DTipoIdentificacion" EntityType="Self.DTipoIdentificacion" />
-          <EntitySet Name="DTipoQueja" EntityType="Self.DTipoQueja" />
+          <EntitySet Name="DTipoRecepcionQueja" EntityType="Self.DTipoRecepcionQueja" />
+          <EntitySet Name="DTipoSolicitud" EntityType="Self.DTipoSolicitud" />
           <EntitySet Name="DUpz" EntityType="Self.DUpz" />
+          <AssociationSet Name="FK_PrivilegioRol_Privilegios" Association="Self.FK_PrivilegioRol_Privilegios">
+            <End Role="DPrivilegios" EntitySet="DPrivilegios" />
+            <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
+          </AssociationSet>
           <AssociationSet Name="FK_PrivilegioRol_Roles" Association="Self.FK_PrivilegioRol_Roles">
             <End Role="DRoles" EntitySet="DRoles" />
             <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
@@ -906,28 +820,38 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             <End Role="Entidad" EntitySet="Entidad" />
             <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
           </AssociationSet>
-          <AssociationSet Name="FK_Queja_Entidad_Servicio" Association="Self.FK_Queja_Entidad_Servicio">
-            <End Role="Entidad_Servicio" EntitySet="Entidad_Servicio" />
-            <End Role="Queja" EntitySet="Queja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Queja_Persona" Association="Self.FK_Queja_Persona">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="Queja" EntitySet="Queja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Queja_Persona1" Association="Self.FK_Queja_Persona1">
-            <End Role="Persona" EntitySet="Persona" />
-            <End Role="Queja" EntitySet="Queja" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Visita_Queja" Association="Self.FK_Visita_Queja">
-            <End Role="Queja" EntitySet="Queja" />
-            <End Role="Visita" EntitySet="Visita" />
-          </AssociationSet>
+          <FunctionImport Name="SP_ADD_PERSONA">
+            <Parameter Name="idPersona" Mode="In" Type="Int64" />
+            <Parameter Name="idTipoIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="numeroIdentificacion" Mode="In" Type="String" />
+            <Parameter Name="digitoVerificacion" Mode="In" Type="Int32" />
+            <Parameter Name="primerNombre" Mode="In" Type="String" />
+            <Parameter Name="segundoNombre" Mode="In" Type="String" />
+            <Parameter Name="primerApellido" Mode="In" Type="String" />
+            <Parameter Name="segundoApellido" Mode="In" Type="String" />
+            <Parameter Name="direccion" Mode="In" Type="String" />
+            <Parameter Name="idTipoDireccion" Mode="In" Type="Int32" />
+            <Parameter Name="idLocalidad" Mode="In" Type="Int32" />
+            <Parameter Name="idBarrio" Mode="In" Type="String" />
+            <Parameter Name="idUpz" Mode="In" Type="Int32" />
+            <Parameter Name="telefono1" Mode="In" Type="String" />
+            <Parameter Name="telefono2" Mode="In" Type="String" />
+            <Parameter Name="correoElectronico" Mode="In" Type="String" />
+            <Parameter Name="usrCreado" Mode="In" Type="String" />
+            <Parameter Name="usrModificado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ADD_PRIVILEGIO">
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="componente" Mode="In" Type="String" />
+            <Parameter Name="idModulo" Mode="In" Type="Int32" />
+            <Parameter Name="orden" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SP_ADD_PRIVILEGIOROL">
             <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
             <Parameter Name="idRol" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_ADD_ROL">
-          <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ADD_USUARIO">
             <Parameter Name="idUsuario" Mode="In" Type="String" />
@@ -938,16 +862,50 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             <Parameter Name="idRol" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_FIND_PRIVILEGIOROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_PRIVILEGIOROL_Result)">
-          <Parameter Name="idPrivilegioRol" Mode="In" Type="Int32" />
+            <Parameter Name="idPrivilegioRol" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_FIND_ROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_ROL_Result)">
-          <Parameter Name="idRol" Mode="In" Type="Int32" />
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_FIND_USUARIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_Result)">
-          <Parameter Name="idUsuario" Mode="In" Type="String" />
+            <Parameter Name="idUsuario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="SP_FIND_USUARIO_AUTORIZADO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_AUTORIZADO_Result)">
+            <Parameter Name="idUsuario" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LIST_BARRIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_BARRIO_Result)">
+            <Parameter Name="idupz" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LIST_ENTIDAD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result)" />
+          <FunctionImport Name="SP_LIST_ENTIDADREMITENTE" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_ENTIDADREMITENTE_Result)" />
+          <FunctionImport Name="SP_LIST_LOCALIDAD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_LOCALIDAD_Result)" />
+          <FunctionImport Name="SP_LIST_PERSONAAFECTADO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PERSONAAFECTADO_Result)" />
+          <FunctionImport Name="SP_LIST_PERSONAQUEJOSO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PERSONAQUEJOSO_Result)" />
+          <FunctionImport Name="SP_LIST_PRIVILEGIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIO_Result)" />
           <FunctionImport Name="SP_LIST_PRIVILEGIOROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOROL_Result)" />
+          <FunctionImport Name="SP_LIST_PRIVILEGIOSBYROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOSBYROL_Result)">
+            <Parameter Name="idRol" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SP_LIST_ROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_ROL_Result)" />
+          <FunctionImport Name="SP_LIST_TIPOIDENTIFICACION" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_TIPOIDENTIFICACION_Result)" />
+          <FunctionImport Name="SP_LIST_TIPORECEPCIONQUEJA" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_TIPORECEPCIONQUEJA_Result)" />
+          <FunctionImport Name="SP_LIST_TIPOSOLICITUD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_TIPOSOLICITUD_Result)" />
+          <FunctionImport Name="SP_LIST_UPZ" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_UPZ_Result)">
+            <Parameter Name="idlocalidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LIST_USUARIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result)" />
+          <FunctionImport Name="SP_UPD_CLAVE_USUARIO">
+            <Parameter Name="idUsuario" Mode="In" Type="String" />
+            <Parameter Name="clave" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPD_PRIVILEGIO">
+            <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="componente" Mode="In" Type="String" />
+            <Parameter Name="idModulo" Mode="In" Type="Int32" />
+            <Parameter Name="orden" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="SP_UPD_PRIVILEGIOROL">
             <Parameter Name="idPrivilegioRol" Mode="In" Type="Int32" />
             <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
@@ -957,38 +915,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             <Parameter Name="idRol" Mode="In" Type="Int32" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_LIST_USUARIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result)" />
-          <FunctionImport Name="SP_FIND_USUARIO_AUTORIZADO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_AUTORIZADO_Result)">
-            <Parameter Name="idUsuario" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="DModulos" EntityType="SiguemeQ_DesarrolloModel.DModulos" />
-          <EntitySet Name="DPrivilegios" EntityType="SiguemeQ_DesarrolloModel.DPrivilegios" />
-          <AssociationSet Name="FK_PrivilegioRol_Privilegios" Association="SiguemeQ_DesarrolloModel.FK_PrivilegioRol_Privilegios">
-            <End Role="DPrivilegios" EntitySet="DPrivilegios" />
-            <End Role="DPrivilegioRol" EntitySet="DPrivilegioRol" />
-          </AssociationSet>
-          <FunctionImport Name="SP_ADD_PRIVILEGIO">
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="componente" Mode="In" Type="String" />
-            <Parameter Name="idModulo" Mode="In" Type="Int32" />
-            <Parameter Name="orden" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_LIST_PRIVILEGIO" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIO_Result)" />
-          <FunctionImport Name="SP_LIST_PRIVILEGIOSBYROL" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOSBYROL_Result)">
-          <Parameter Name="idRol" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPD_PRIVILEGIO">
-            <Parameter Name="idPrivilegio" Mode="In" Type="Int32" />
-            <Parameter Name="descripcion" Mode="In" Type="String" />
-            <Parameter Name="componente" Mode="In" Type="String" />
-            <Parameter Name="idModulo" Mode="In" Type="Int32" />
-            <Parameter Name="orden" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPD_CLAVE_USUARIO">
-            <Parameter Name="idUsuario" Mode="In" Type="String" />
-            <Parameter Name="clave" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SP_UPD_USUARIO">
             <Parameter Name="idUsuario" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
@@ -997,9 +923,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
             <Parameter Name="usrModificado" Mode="In" Type="String" />
             <Parameter Name="idRol" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="DTipoSolicitud" EntityType="SiguemeQ_DesarrolloModel.DTipoSolicitud" />
-          <FunctionImport Name="SP_LIST_TIPOSOLICITUD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_TIPOSOLICITUD_Result)" />
-          <FunctionImport Name="SP_LIST_ENTIDAD" ReturnType="Collection(SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result)" />
         </EntityContainer>
         <ComplexType Name="SP_FIND_PRIVILEGIOROL_Result">
           <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
@@ -1021,28 +944,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
           <Property Type="Int32" Name="idRol" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SP_LIST_PRIVILEGIOROL_Result">
-          <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
-          <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
-          <Property Type="String" Name="descripcionPrivilegio" Nullable="false" MaxLength="256" />
-          <Property Type="Int32" Name="idRol" Nullable="false" />
-          <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
-        </ComplexType>
-        <ComplexType Name="SP_LIST_ROL_Result">
-          <Property Type="Int32" Name="idRol" Nullable="false" />
-          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
-        </ComplexType>
-        <ComplexType Name="SP_LIST_USUARIO_Result">
-          <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="256" />
-          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
-          <Property Type="DateTime" Name="fechaCreado" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="fechaActualizado" Nullable="true" Precision="23" />
-          <Property Type="String" Name="usrCreado" Nullable="true" MaxLength="256" />
-          <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
-          <Property Type="Int32" Name="idRol" Nullable="false" />
-          <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
-        </ComplexType>
         <ComplexType Name="SP_FIND_USUARIO_AUTORIZADO_Result">
           <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="256" />
           <Property Type="String" Name="password" Nullable="false" MaxLength="100" />
@@ -1055,36 +956,71 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Type="Int32" Name="idRol" Nullable="false" />
           <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
         </ComplexType>
-        <EntityType Name="DModulos">
-          <Key>
-            <PropertyRef Name="idModulo" />
-          </Key>
-          <Property Name="idModulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="DPrivilegios">
-          <Key>
-            <PropertyRef Name="idPrivilegio" />
-          </Key>
-          <Property Name="idPrivilegio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="componente" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="idModulo" Type="Int32" Nullable="false" />
-          <Property Name="orden" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DPrivilegioRol" Relationship="SiguemeQ_DesarrolloModel.FK_PrivilegioRol_Privilegios" FromRole="DPrivilegios" ToRole="DPrivilegioRol" />
-        </EntityType>
-        <Association Name="FK_PrivilegioRol_Privilegios">
-          <End Type="SiguemeQ_DesarrolloModel.DPrivilegios" Role="DPrivilegios" Multiplicity="1" />
-          <End Type="SiguemeQ_DesarrolloModel.DPrivilegioRol" Role="DPrivilegioRol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DPrivilegios">
-              <PropertyRef Name="idPrivilegio" />
-            </Principal>
-            <Dependent Role="DPrivilegioRol">
-              <PropertyRef Name="idPrivilegio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="SP_LIST_BARRIO_Result">
+          <Property Type="String" Name="idBarrio" Nullable="false" MaxLength="7" />
+          <Property Type="Int32" Name="idUpz" Nullable="false" />
+          <Property Type="String" Name="descripcionBarrio" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="activoBarrio" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_ENTIDAD_Result">
+          <Property Type="Int64" Name="idEntidad" Nullable="false" />
+          <Property Type="String" Name="nombreEntidad" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_ENTIDADREMITENTE_Result">
+          <Property Type="Int32" Name="idEntidadRemitente" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_LOCALIDAD_Result">
+          <Property Type="Int32" Name="idLocalidad" Nullable="false" />
+          <Property Type="String" Name="descripcionLocalidad" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="activoLocalidad" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_PERSONAAFECTADO_Result">
+          <Property Type="Int64" Name="idPersona" Nullable="false" />
+          <Property Type="String" Name="idTipoIdentificacion" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="numeroIdentificacion" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="digitoVerificacion" Nullable="true" />
+          <Property Type="String" Name="primerNombre" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="segundoNombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="primerApellido" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="segundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombresApellidos" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="idTipoDireccion" Nullable="true" />
+          <Property Type="Int32" Name="idLocalidad" Nullable="true" />
+          <Property Type="String" Name="idBarrio" Nullable="true" MaxLength="7" />
+          <Property Type="Int32" Name="idUpz" Nullable="false" />
+          <Property Type="String" Name="telefono1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="telefono2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correoElectronico" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="fechaCreado" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fechaModificado" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usrCreado" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_PERSONAQUEJOSO_Result">
+          <Property Type="Int64" Name="idPersona" Nullable="false" />
+          <Property Type="String" Name="idTipoIdentificacion" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="numeroIdentificacion" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="digitoVerificacion" Nullable="true" />
+          <Property Type="String" Name="primerNombre" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="segundoNombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="primerApellido" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="segundoApellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombresApellidos" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="idTipoDireccion" Nullable="true" />
+          <Property Type="Int32" Name="idLocalidad" Nullable="true" />
+          <Property Type="String" Name="idBarrio" Nullable="true" MaxLength="7" />
+          <Property Type="Int32" Name="idUpz" Nullable="false" />
+          <Property Type="String" Name="telefono1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="telefono2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="correoElectronico" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="fechaCreado" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="fechaModificado" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usrCreado" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
+        </ComplexType>
         <ComplexType Name="SP_LIST_PRIVILEGIO_Result">
           <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="false" MaxLength="256" />
@@ -1093,32 +1029,58 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
           <Property Type="String" Name="descripcionModulo" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="orden" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="SP_LIST_PRIVILEGIOSBYROL_Result">
+        <ComplexType Name="SP_LIST_PRIVILEGIOROL_Result">
           <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
           <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
           <Property Type="String" Name="descripcionPrivilegio" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="idRol" Nullable="false" />
           <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_PRIVILEGIOSBYROL_Result">
+          <Property Type="Int32" Name="idPrivilegioRol" Nullable="false" />
+          <Property Type="Int32" Name="idPrivilegio" Nullable="false" />
+          <Property Type="String" Name="descripcionPrivilegio" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="componente" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="idRol" Nullable="false" />
+          <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="idModulo" Nullable="false" />
           <Property Type="String" Name="descripcionModulo" Nullable="false" MaxLength="255" />
           <Property Type="Int32" Name="orden" Nullable="false" />
-          <Property Type="String" Name="componente" Nullable="false" MaxLength="256" />
         </ComplexType>
-        <EntityType Name="DTipoSolicitud">
-          <Key>
-            <PropertyRef Name="idTipoSolicitud" />
-          </Key>
-          <Property Name="idTipoSolicitud" Type="Int32" Nullable="false" />
-          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="activo" Type="Boolean" />
-        </EntityType>
+        <ComplexType Name="SP_LIST_ROL_Result">
+          <Property Type="Int32" Name="idRol" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_TIPOIDENTIFICACION_Result">
+          <Property Type="String" Name="idTipoIdentificacion" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_TIPORECEPCIONQUEJA_Result">
+          <Property Type="Int32" Name="idTipoRecepcionQueja" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="SP_LIST_TIPOSOLICITUD_Result">
           <Property Type="Int32" Name="idTipoSolicitud" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="255" />
         </ComplexType>
-        <ComplexType Name="SP_LIST_ENTIDAD_Result">
-          <Property Type="Int64" Name="idEntidad" Nullable="false" />
-          <Property Type="String" Name="nombreEntidad" Nullable="false" MaxLength="255" />
+        <ComplexType Name="SP_LIST_UPZ_Result">
+          <Property Type="Int32" Name="idUpz" Nullable="false" />
+          <Property Type="Int32" Name="idLocalidad" Nullable="false" />
+          <Property Type="String" Name="descripcionUpz" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="activoUpz" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_LIST_USUARIO_Result">
+          <Property Type="String" Name="idUsuario" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="fechaCreado" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaActualizado" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usrCreado" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="usrModificado" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="idRol" Nullable="false" />
+          <Property Type="String" Name="descripcionRol" Nullable="false" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1126,12 +1088,39 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SiguemeQ_DesarrolloModelStoreContainer" CdmEntityContainer="SiguemeQ_DesarrolloEntities">
+          <EntitySetMapping Name="DEntidadRemitente">
+            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DEntidadRemitente">
+              <MappingFragment StoreEntitySet="DEntidadRemitente">
+                <ScalarProperty Name="idEntidadRemitente" ColumnName="idEntidadRemitente" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DModulos">
+            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DModulos">
+              <MappingFragment StoreEntitySet="DModulos">
+                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="DPrivilegioRol">
             <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DPrivilegioRol">
               <MappingFragment StoreEntitySet="DPrivilegioRol">
                 <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
                 <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DPrivilegios">
+            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DPrivilegios">
+              <MappingFragment StoreEntitySet="DPrivilegios">
+                <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="componente" ColumnName="componente" />
+                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1211,36 +1200,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
                 <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
                 <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
                 <ScalarProperty Name="fechaModificado" ColumnName="fechaModificado" />
-                <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
-                <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Queja">
-            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.Queja">
-              <MappingFragment StoreEntitySet="Queja">
-                <ScalarProperty Name="idQueja" ColumnName="idQueja" />
-                <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
-                <ScalarProperty Name="numeroRadicadoQueja" ColumnName="numeroRadicadoQueja" />
-                <ScalarProperty Name="fechaRadicadoQueja" ColumnName="fechaRadicadoQueja" />
-                <ScalarProperty Name="fechaLimiteRespuesta" ColumnName="fechaLimiteRespuesta" />
-                <ScalarProperty Name="idEntidadRemitente" ColumnName="idEntidadRemitente" />
-                <ScalarProperty Name="numeroRadicadoAtencionUsuario" ColumnName="numeroRadicadoAtencionUsuario" />
-                <ScalarProperty Name="idTipoRecepcionQueja" ColumnName="idTipoRecepcionQueja" />
-                <ScalarProperty Name="idPersonaQuejoso" ColumnName="idPersonaQuejoso" />
-                <ScalarProperty Name="idPersonaAfectado" ColumnName="idPersonaAfectado" />
-                <ScalarProperty Name="idEntidadServicioInvolucrada" ColumnName="idEntidadServicioInvolucrada" />
-                <ScalarProperty Name="motivoQueja" ColumnName="motivoQueja" />
-                <ScalarProperty Name="radicadosRelacionados" ColumnName="radicadosRelacionados" />
-                <ScalarProperty Name="idPalabrasClaves" ColumnName="idPalabrasClaves" />
-                <ScalarProperty Name="idCaracteristicasEspeciales" ColumnName="idCaracteristicasEspeciales" />
-                <ScalarProperty Name="idTipoDireccionamiento" ColumnName="idTipoDireccionamiento" />
-                <ScalarProperty Name="idGrupoEntrega" ColumnName="idGrupoEntrega" />
-                <ScalarProperty Name="foliosEntrega" ColumnName="foliosEntrega" />
-                <ScalarProperty Name="fechaEntrega" ColumnName="fechaEntrega" />
-                <ScalarProperty Name="idEstadoQueja" ColumnName="idEstadoQueja" />
-                <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
-                <ScalarProperty Name="fechaActualizado" ColumnName="fechaActualizado" />
                 <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
                 <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
               </MappingFragment>
@@ -1327,10 +1286,19 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DTipoQueja">
-            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoQueja">
-              <MappingFragment StoreEntitySet="DTipoQueja">
-                <ScalarProperty Name="idTipoQueja" ColumnName="idTipoQueja" />
+          <EntitySetMapping Name="DTipoRecepcionQueja">
+            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoRecepcionQueja">
+              <MappingFragment StoreEntitySet="DTipoRecepcionQueja">
+                <ScalarProperty Name="idTipoRecepcionQueja" ColumnName="idTipoRecepcionQueja" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DTipoSolicitud">
+            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoSolicitud">
+              <MappingFragment StoreEntitySet="DTipoSolicitud">
+                <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
               </MappingFragment>
@@ -1346,6 +1314,8 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ADD_PERSONA" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PERSONA" />
+          <FunctionImportMapping FunctionImportName="SP_ADD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PRIVILEGIO" />
           <FunctionImportMapping FunctionImportName="SP_ADD_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PRIVILEGIOROL" />
           <FunctionImportMapping FunctionImportName="SP_ADD_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_ROL" />
           <FunctionImportMapping FunctionImportName="SP_ADD_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_USUARIO" />
@@ -1381,42 +1351,6 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIOROL">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOROL_Result">
-                <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
-                <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
-                <ScalarProperty Name="descripcionPrivilegio" ColumnName="descripcionPrivilegio" />
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_LIST_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ROL">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ROL_Result">
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIOROL" />
-          <FunctionImportMapping FunctionImportName="SP_UPD_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_ROL" />
-          <FunctionImportMapping FunctionImportName="SP_LIST_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_USUARIO">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result">
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
-                <ScalarProperty Name="fechaActualizado" ColumnName="fechaActualizado" />
-                <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
-                <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
-                <ScalarProperty Name="idRol" ColumnName="idRol" />
-                <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_FIND_USUARIO_AUTORIZADO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_FIND_USUARIO_AUTORIZADO">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_FIND_USUARIO_AUTORIZADO_Result">
@@ -1433,26 +1367,95 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="DModulos">
-            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DModulos">
-              <MappingFragment StoreEntitySet="DModulos">
+          <FunctionImportMapping FunctionImportName="SP_LIST_BARRIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_BARRIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_BARRIO_Result">
+                <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+                <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+                <ScalarProperty Name="descripcionBarrio" ColumnName="descripcionBarrio" />
+                <ScalarProperty Name="activoBarrio" ColumnName="activoBarrio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_ENTIDAD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ENTIDAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result">
+                <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
+                <ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_ENTIDADREMITENTE" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ENTIDADREMITENTE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ENTIDADREMITENTE_Result">
+                <ScalarProperty Name="idEntidadRemitente" ColumnName="idEntidadRemitente" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DPrivilegios">
-            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DPrivilegios">
-              <MappingFragment StoreEntitySet="DPrivilegios">
-                <ScalarProperty Name="orden" ColumnName="orden" />
-                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-                <ScalarProperty Name="componente" ColumnName="componente" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_ADD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_ADD_PRIVILEGIO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_LOCALIDAD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_LOCALIDAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_LOCALIDAD_Result">
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="descripcionLocalidad" ColumnName="descripcionLocalidad" />
+                <ScalarProperty Name="activoLocalidad" ColumnName="activoLocalidad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_PERSONAAFECTADO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PERSONAAFECTADO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PERSONAAFECTADO_Result">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+                <ScalarProperty Name="numeroIdentificacion" ColumnName="numeroIdentificacion" />
+                <ScalarProperty Name="digitoVerificacion" ColumnName="digitoVerificacion" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="nombresApellidos" ColumnName="nombresApellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+                <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+                <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+                <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
+                <ScalarProperty Name="fechaModificado" ColumnName="fechaModificado" />
+                <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
+                <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_PERSONAQUEJOSO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PERSONAQUEJOSO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PERSONAQUEJOSO_Result">
+                <ScalarProperty Name="idPersona" ColumnName="idPersona" />
+                <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+                <ScalarProperty Name="numeroIdentificacion" ColumnName="numeroIdentificacion" />
+                <ScalarProperty Name="digitoVerificacion" ColumnName="digitoVerificacion" />
+                <ScalarProperty Name="primerNombre" ColumnName="primerNombre" />
+                <ScalarProperty Name="segundoNombre" ColumnName="segundoNombre" />
+                <ScalarProperty Name="primerApellido" ColumnName="primerApellido" />
+                <ScalarProperty Name="segundoApellido" ColumnName="segundoApellido" />
+                <ScalarProperty Name="nombresApellidos" ColumnName="nombresApellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="idTipoDireccion" ColumnName="idTipoDireccion" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="idBarrio" ColumnName="idBarrio" />
+                <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+                <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+                <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
+                <ScalarProperty Name="fechaModificado" ColumnName="fechaModificado" />
+                <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
+                <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIO">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIO_Result">
@@ -1465,33 +1468,58 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIOROL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOROL_Result">
+                <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
+                <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
+                <ScalarProperty Name="descripcionPrivilegio" ColumnName="descripcionPrivilegio" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_LIST_PRIVILEGIOSBYROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_PRIVILEGIOSBYROL">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_PRIVILEGIOSBYROL_Result">
                 <ScalarProperty Name="idPrivilegioRol" ColumnName="idPrivilegioRol" />
                 <ScalarProperty Name="idPrivilegio" ColumnName="idPrivilegio" />
                 <ScalarProperty Name="descripcionPrivilegio" ColumnName="descripcionPrivilegio" />
+                <ScalarProperty Name="componente" ColumnName="componente" />
                 <ScalarProperty Name="idRol" ColumnName="idRol" />
                 <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
                 <ScalarProperty Name="idModulo" ColumnName="idModulo" />
                 <ScalarProperty Name="descripcionModulo" ColumnName="descripcionModulo" />
                 <ScalarProperty Name="orden" ColumnName="orden" />
-                <ScalarProperty Name="componente" ColumnName="componente" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIO" />
-          <FunctionImportMapping FunctionImportName="SP_UPD_CLAVE_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_CLAVE_USUARIO" />
-          <FunctionImportMapping FunctionImportName="SP_UPD_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_USUARIO" />
-          <EntitySetMapping Name="DTipoSolicitud">
-            <EntityTypeMapping TypeName="SiguemeQ_DesarrolloModel.DTipoSolicitud">
-              <MappingFragment StoreEntitySet="DTipoSolicitud">
-                <ScalarProperty Name="activo" ColumnName="activo" />
+          <FunctionImportMapping FunctionImportName="SP_LIST_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ROL">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ROL_Result">
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="idTipoSolicitud" ColumnName="idTipoSolicitud" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_TIPOIDENTIFICACION" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_TIPOIDENTIFICACION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_TIPOIDENTIFICACION_Result">
+                <ScalarProperty Name="idTipoIdentificacion" ColumnName="idTipoIdentificacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_TIPORECEPCIONQUEJA" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_TIPORECEPCIONQUEJA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_TIPORECEPCIONQUEJA_Result">
+                <ScalarProperty Name="idTipoRecepcionQueja" ColumnName="idTipoRecepcionQueja" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_LIST_TIPOSOLICITUD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_TIPOSOLICITUD">
             <ResultMapping>
               <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_TIPOSOLICITUD_Result">
@@ -1500,14 +1528,36 @@ advertencia 6002: La tabla o vista 'SiguemeQ_Desarrollo.dbo.DUpz' no tiene defin
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SP_LIST_ENTIDAD" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_ENTIDAD">
+          <FunctionImportMapping FunctionImportName="SP_LIST_UPZ" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_UPZ">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_ENTIDAD_Result">
-                <ScalarProperty Name="idEntidad" ColumnName="idEntidad" />
-                <ScalarProperty Name="nombreEntidad" ColumnName="nombreEntidad" />
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_UPZ_Result">
+                <ScalarProperty Name="idUpz" ColumnName="idUpz" />
+                <ScalarProperty Name="idLocalidad" ColumnName="idLocalidad" />
+                <ScalarProperty Name="descripcionUpz" ColumnName="descripcionUpz" />
+                <ScalarProperty Name="activoUpz" ColumnName="activoUpz" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_LIST_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_LIST_USUARIO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SiguemeQ_DesarrolloModel.SP_LIST_USUARIO_Result">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreado" ColumnName="fechaCreado" />
+                <ScalarProperty Name="fechaActualizado" ColumnName="fechaActualizado" />
+                <ScalarProperty Name="usrCreado" ColumnName="usrCreado" />
+                <ScalarProperty Name="usrModificado" ColumnName="usrModificado" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="descripcionRol" ColumnName="descripcionRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_UPD_CLAVE_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_CLAVE_USUARIO" />
+          <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIO" />
+          <FunctionImportMapping FunctionImportName="SP_UPD_PRIVILEGIOROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_PRIVILEGIOROL" />
+          <FunctionImportMapping FunctionImportName="SP_UPD_ROL" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_ROL" />
+          <FunctionImportMapping FunctionImportName="SP_UPD_USUARIO" FunctionName="SiguemeQ_DesarrolloModel.Store.SP_UPD_USUARIO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

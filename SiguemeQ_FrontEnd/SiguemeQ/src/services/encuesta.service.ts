@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { Encuesta, ListaEncuesta } from '../models/encuesta.model';
 import { environment } from '../environments/environment';
 
-import { Localidades, TipoDocumento, Usuarios, Roles, Municipios, Profesiones, HorasFormacion, PrecioConsulta, Convocatoria, Departamentos } from '../models/parametricas.model';
+import { Localidades,  Usuarios, Roles } from '../models/parametricas.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,112 +69,13 @@ export class EncuestaService {
     return this.httpClient.get<Localidades[]>(this.url + '/encuesta/parametricas/GetListaLocalidades?token=' + this.token);
   }
 
-  GetListaMunicipios(): Observable<any> {
-    return this.httpClient.get<Municipios[]>(this.url + '/encuesta/parametricas/GetListaMunicipios?token=' + this.token);
-  }
-
-  GetListaDepartamentos(): Observable<any> {
-    return this.httpClient.get<Departamentos[]>(this.url + '/encuesta/parametricas/GetListaDepartamentos?token=' + this.token);
-  }
-
-
-  GetListaTipoDocumentos(): Observable<any> {
-    return this.httpClient.get<TipoDocumento>(this.url + '/encuesta/parametricas/GetListaTipoDocumentos?token=' + this.token);
-  }
-
+  
   GetListaRoles(): Observable<any> {
     return this.httpClient.get<Roles>(this.url + '/encuesta/parametricas/GetListaRoles?token=' + this.token);
   }
 
 
-  //Gestión Convocatorias
-  GetListaConvocatorias(): Observable<any> {
-    return this.httpClient.get<Convocatoria>(this.url + '/encuesta/parametricas/GetListaConvocatorias?token=' + this.token);
-  }
-  addConvocatoria(data: Convocatoria): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/addConvocatoria?token=' + this.token, data);
-  }
-
-  setConvocatoria(data: Convocatoria): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/setConvocatoria?token=' + this.token, data);
-  }
-
-  GetConvocatoria(con_id: number): Observable<any> {
-    return this.httpClient.get(this.url + '/encuesta/parametricas/GetConvocatoria?con_id=' + con_id + '&token=' + this.token);
-  }
-  GetConvocatoriaVigente(): Observable<any> {
-    return this.httpClient.get<Convocatoria[]>(this.url + '/encuesta/parametricas/GetConvocatoriaVigente?token=' + this.token);
-  }
-
-  delConvocatoria(data: Convocatoria): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/delConvocatoria?token=' + this.token, data);
-  }
 
 
-
-  //Gestión Horas Formacion
-  GetListaHorasFormacion(): Observable<any> {
-    return this.httpClient.get<HorasFormacion>(this.url + '/encuesta/parametricas/GetListaHorasFormacion?token=' + this.token);
-  }
-
-  addHorasFormacion(data: HorasFormacion): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/addHorasFormacion?token=' + this.token, data);
-  }
-
-  setHorasFormacion(data: HorasFormacion): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/setHorasFormacion?token=' + this.token, data);
-  }
-
-  GetHorasFormacion(hor_id: number): Observable<any> {
-    return this.httpClient.get(this.url + '/encuesta/parametricas/GetHorasFormacion?hor_id=' + hor_id + '&token=' + this.token);
-  }
-
-  delHorasFormacion(data: HorasFormacion): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/delHorasFormacion?token=' + this.token, data);
-  }
-
-
-  //Gestión Precios Consulta
-  GetListaPrecioConsulta(): Observable<any> {
-    return this.httpClient.get<PrecioConsulta>(this.url + '/encuesta/parametricas/GetListaPrecioConsulta?token=' + this.token);
-  }
-
-  addPrecioConsulta(data: PrecioConsulta): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/addPrecioConsulta?token=' + this.token, data);
-  }
-
-  setPrecioConsulta(data: PrecioConsulta): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/setPrecioConsulta?token=' + this.token, data);
-  }
-
-  GetPrecioConsulta(pre_id: number): Observable<any> {
-    return this.httpClient.get(this.url + '/encuesta/parametricas/GetPrecioConsulta?pre_id=' + pre_id + '&token=' + this.token);
-  }
-
-  delPrecioConsulta(data: PrecioConsulta): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/delPrecioConsulta?token=' + this.token, data);
-  }
-
-
-  //Gestión Profesiones
-  GetListaProfesiones(): Observable<any> {
-    return this.httpClient.get<Profesiones>(this.url + '/encuesta/parametricas/GetListaProfesiones?token=' + this.token);
-  }
-
-  addProfesion(data: Profesiones): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/addProfesion?token=' + this.token, data);
-  }
-
-  setProfesion(data: Profesiones): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/setProfesion?token=' + this.token, data);
-  }
-
-  GetProfesion(pro_id: number): Observable<any> {
-    return this.httpClient.get(this.url + '/encuesta/parametricas/GetProfesion?pro_id=' + pro_id + '&token=' + this.token);
-  }
-
-  delProfesion(data: Profesiones): any {
-    return this.httpClient.post<any>(this.url + '/encuesta/parametricas/delProfesion?token=' + this.token, data);
-  }
 
 }

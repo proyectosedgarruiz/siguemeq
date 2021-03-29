@@ -10,9 +10,8 @@
 namespace WsSiguemeQ.Models.EDMX
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Persona
+    public partial class SP_LIST_PERSONAAFECTADO_Result
     {
         public long idPersona { get; set; }
         public string idTipoIdentificacion { get; set; }

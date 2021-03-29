@@ -18,7 +18,7 @@ namespace WsSiguemeQ.Models.EDMX
         public int idPrivilegio { get; set; }
         public int idRol { get; set; }
     
-        public virtual DRoles DRoles { get; set; }
         public virtual DPrivilegios DPrivilegios { get; set; }
+        public virtual DRoles DRoles { get; set; }
     }
 }

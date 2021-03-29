@@ -31,7 +31,42 @@ export class ParametricasService {
         return this.httpClient.get(this.url + '/parametricas/GetListaTipoSolicitud?token=' + this.token);
     }
 
-    GetListaEntidad(): Observable<any> {
-        return this.httpClient.get(this.url + '/parametricas/GetListaEntidad?token=' + this.token);
+
+    GetListaTipoRecepcionQueja(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaTipoRecepcionQueja?token=' + this.token);
+    }
+
+    GetListaEntidadRemitente(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaEntidadRemitente?token=' + this.token);
+    }
+
+  /* GetListaPersonaQuejoso(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaPersonaQuejoso?token=' + this.token);
+    }
+
+    GetListaPersonaAfectado(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaPersonaAfectado?token=' + this.token);
+    }*/
+
+
+    /*GetListaEntidadInvolucrada(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaEntidadInvolucrada?token=' + this.token);
+    }*/
+
+    GetListaTipoIdentificacion(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaTipoIdentificacion?token=' + this.token);
+    }
+
+    GetListaLocalidad(): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaLocalidad?token=' + this.token);
+    }
+
+    GetListaUPZ(idlocalidad : number): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaUPZ?token=' + this.token+'&idlocalidad='+idlocalidad);
+    }
+
+    GetListaBarrio(idUPZ : number): Observable<any> {
+        return this.httpClient.get(this.url + '/parametricas/GetListaBarrio?token=' + this.token+'&idUPZ='+idUPZ);
     }
 }
+

@@ -2,7 +2,7 @@
     <div class="cent">
         <table width="100%">
             <tr>
-                <td align="right">
+                <td align="left">
                     <h4><b>Recepción de PQRS</b></h4>
                 </td>
             </tr>
@@ -12,7 +12,7 @@
 
 
     <br>
-    <div class="contenedorprincipalencuesta">
+    <div class="contenedorprincipal">
         <form name="myForm">
 
 
@@ -20,16 +20,17 @@
                 <div class="col">
                     <div class="form-group">
                         <label class="labeld" for="tiposolicitud">Tipo de Solicitud <font COLOR="red">*</font> :</label>
-                        <select required class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.idTipoSolicitud" style="text-transform: uppercase;"
-                        id="tiposolicitud" >
-                        <option *ngFor="let fila of selectTipoSolicitud" value="{{fila.idTipoSolicitud}}">{{fila.descripcion}}
-                        </option>
-        
-        
-                      </select>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.idTipoSolicitud" style="text-transform: uppercase;" id="tiposolicitud">
+                            <option *ngFor="let fila of selectTipoSolicitud" value="{{fila.idTipoSolicitud}}">
+                                {{fila.descripcion}}
+                            </option>
+
+
+                        </select>
                     </div>
                 </div>
-           
+
                 <div class="col">
                     <div class="form-group">
                         <label class="labeld" for="numeroradicadoqueja">Número Radicado <font COLOR="red">*</font>
@@ -39,73 +40,279 @@
                             placeholder="Ingrese el número de radicado" style="text-transform: uppercase;">
                     </div>
                 </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="fecharadicadoqueja">Fecha Radicado <font COLOR="red">*</font>
+                            :</label>
+
+                        <input required type="date" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.fechaRadicadoQueja" class="form-control" id="fecharadicadoqueja"
+                            placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy" is-open="opened" close-text="Close">
+
+
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="fechalimiterespuesta">Fecha Límite Respuesta <font COLOR="red">*
+                            </font>
+                            :</label>
+
+                        <input required type="date" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.fechaLimiteRespuesta" class="form-control" id="fechalimiterespuesta"
+                            placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy" is-open="opened" close-text="Close">
+
+
+                    </div>
+                </div>
+
+
             </div>
 
 
 
             <div class="form-row">
                 <div class="col">
-                  <div class="form-group">
-                    <label class="labeld" for="fecharadicadoqueja">Fecha Radicado <font COLOR="red">*</font>
-                        :</label>
-        
-                    <input  required type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.fechaRadicadoQueja"
-                      class="form-control" id="fecharadicadoqueja" placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy"
-                      is-open="opened" close-text="Close"  >
-        
-                     
-                  </div>
+                    <div class="form-group">
+                        <label class="labeld" for="entidadremitente">Entidad Remitente <font COLOR="red">*</font>
+                            :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.idEntidadRemitente" style="text-transform: uppercase;"
+                            id="entidadremitente">
+                            <option *ngFor="let fila of selectEntidadRemitente" value="{{fila.idEntidadRemitente}}">
+                                {{fila.descripcion}}
+                            </option>
+
+
+                        </select>
+                    </div>
                 </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="numeroradicadoatencionusuario">Número Radicado Atención de Usuario
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.numeroRadicadoAtencionUsuario" class="form-control"
+                            id="numeroradicadoatencionusuario"
+                            placeholder="Ingrese el número de radicado de atención de usuario"
+                            style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+
 
                 <div class="col">
                     <div class="form-group">
-                      <label class="labeld" for="fechalimiterespuesta">Fecha Límite Respuesta <font COLOR="red">*</font>
-                          :</label>
-          
-                      <input  required type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.fechaLimiteRespuesta"
-                        class="form-control" id="fechalimiterespuesta" placeholder="dd/mm/yyyy" datepicker-popup="dd/MM/yyyy"
-                        is-open="opened" close-text="Close"  >
-          
-                       
-                    </div>
-                  </div>
-                
-        
-              </div>
+                        <label class="labeld" for="tiporecepcionqueja">Tipo Recepción Queja <font COLOR="red">*</font>
+                            :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="queja.idTipoRecepcionQueja" style="text-transform: uppercase;"
+                            id="tiporecepcionqueja">
+                            <option *ngFor="let fila of selectTipoRecepcionQueja" value="{{fila.idTipoRecepcionQueja}}">
+                                {{fila.descripcion}}
+                            </option>
 
 
-
-              <div class="form-row">
-                <div class="col">
-                    <div class="form-group">
-                        <label class="labeld" for="entidadremitente">Entidad Remitente <font COLOR="red">*</font> :</label>
-                        <select required class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="queja.idEntidadRemitente" style="text-transform: uppercase;"
-                        id="entidadremitente" >
-                        <option *ngFor="let fila of selectEntidad" value="{{fila.idEntidad}}">{{fila.nombreEntidad}}
-                        </option>
-        
-        
-                      </select>
+                        </select>
                     </div>
                 </div>
-           
-               
+                <div class="col">
+                    <div class="form-group">
+                        
+                    </div>
+                </div>
             </div>
 
             <div>
-                <table width="100%">
 
-                    <tr>
-
-                        <td align="center" width="10%">
-                            <button class="btn btn-info active"
-                                style="padding-left: 20px; padding-right: 20px; ">Guardar</button>
-                        </td>
-                    </tr>
-                </table>
             </div>
 
 
+        </form>
+    </div>
+    <br>
+    <div class="contenedorsecundarioquejoso">
+        <table width="100%">
+            <tr>
+                <td align="left">
+                    <h4><b>Datos del Quejoso</b></h4>
+                </td>
+            </tr>
+        </table>
+        <form name="myForm">
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="tipoidentificacion">Tipo de Identificación <font COLOR="red">*</font>
+                            :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.idTipoIdentificacion" style="text-transform: uppercase;"
+                            id="tipoidentificacion">
+                            <option *ngFor="let fila of selectTipoIdentificacion" value="{{fila.idTipoIdentificacion}}">
+                                {{fila.descripcion}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="numeroidentificacion">Número Identificación <font COLOR="red">*
+                            </font>
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.numeroIdentificacion" class="form-control" id="numeroidentificacion"
+                            placeholder="Ingrese el número de identificación" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+
+           
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="digitoverificacion">Dígito Verificación <font COLOR="red">*
+                            </font>
+                            :</label>
+                        <input required type="number" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.digitoVerificacion" class="form-control" id="digitoverificacion"
+                             style="text-transform: uppercase;" maxlength="1">
+                    </div>
+                </div>
+              
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="primernombre">Primer Nombre <font COLOR="red">*</font>
+                            :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.primerNombre" class="form-control" id="primernombre"
+                            placeholder="Ingrese el Primer Nombre" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="segundonombre">Segundo Nombre 
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.segundoNombre" class="form-control" id="segundonombre"
+                            placeholder="Ingrese el Segundo Nombre" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+
+           
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="primerapellido">Primer Apellido <font COLOR="red">*</font>
+                            :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.primerApellido" class="form-control" id="primerapellido"
+                            placeholder="Ingrese el Primer Apellido" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="segundoapellido">Segundo Apellido 
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.segundoApellido" class="form-control" id="segundoapellido"
+                            placeholder="Ingrese el Segundo Apellido" style="text-transform: uppercase;">
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="localidad">Localidad  :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.idLocalidad" style="text-transform: uppercase;" id="localidad" (change)="CargarUPZ(quejoso.idLocalidad.toString())">
+                            <option *ngFor="let fila of selectLocalidad" value="{{fila.idLocalidad}}" >
+                                {{fila.descripcionLocalidad}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="upz">UPZ  :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.idUpz" style="text-transform: uppercase;" id="upz" (change)="CargarBarrio(quejoso.idUpz.toString())">
+                            <option *ngFor="let fila of selectUPZ" value="{{fila.idUpz}}" >
+                                {{fila.descripcionUpz}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="barrio">Barrio  :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.idbarrio" style="text-transform: uppercase;" id="barrio">
+                            <option *ngFor="let fila of selectBarrio" value="{{fila.idbarrio}}" >
+                                {{fila.descripcionBarrio}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="telefono1">Teléfono 1 :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.telefono1" class="form-control" id="telefono1"
+                            placeholder="Ingrese el Teléfono 1" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="telefono2">Teléfono 2 :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.telefono2" class="form-control" id="telefono2"
+                            placeholder="Ingrese el Teléfono 2" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="correoelectronico">Correo Electrónico :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="quejoso.correoElectronico" class="form-control" id="correoelectronico"
+                            placeholder="Ingrese el Correo Electrónico" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <table width="100%">
+                   
+                    <tr>
+                      <td align="left" >
+                        <button class="btn btn-info active" (click)="confirmarGrabacionQuejoso()" 
+                          style="padding-left: 20px; padding-right: 20px; ">Guardar Datos del Quejoso</button>
+                      </td>
+                    </tr>
+                  </table>
+            </div>
+                
         </form>
     </div>
 
