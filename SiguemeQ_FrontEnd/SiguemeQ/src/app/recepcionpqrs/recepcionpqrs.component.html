@@ -233,7 +233,7 @@
                     <div class="form-group">
                         <label class="labeld" for="localidad">Localidad  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="quejoso.idLocalidad" style="text-transform: uppercase;" id="localidad" (change)="CargarUPZ(quejoso.idLocalidad.toString())">
+                            [(ngModel)]="quejoso.idLocalidad" style="text-transform: uppercase;" id="localidad" (change)="CargarUPZQuejoso(quejoso.idLocalidad.toString())">
                             <option *ngFor="let fila of selectLocalidad" value="{{fila.idLocalidad}}" >
                                 {{fila.descripcionLocalidad}}
                             </option>
@@ -247,7 +247,7 @@
                     <div class="form-group">
                         <label class="labeld" for="upz">UPZ  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
-                            [(ngModel)]="quejoso.idUpz" style="text-transform: uppercase;" id="upz" (change)="CargarBarrio(quejoso.idUpz.toString())">
+                            [(ngModel)]="quejoso.idUpz" style="text-transform: uppercase;" id="upz" (change)="CargarBarrioQuejoso(quejoso.idUpz.toString())">
                             <option *ngFor="let fila of selectUPZ" value="{{fila.idUpz}}" >
                                 {{fila.descripcionUpz}}
                             </option>
@@ -308,6 +308,189 @@
                       <td align="left" >
                         <button class="btn btn-info active" (click)="confirmarGrabacionQuejoso()" 
                           style="padding-left: 20px; padding-right: 20px; ">Guardar Datos del Quejoso</button>
+                      </td>
+                    </tr>
+                  </table>
+            </div>
+                
+        </form>
+    </div>
+    <br>
+    <div class="contenedorsecundarioafectado">
+        <table width="100%">
+            <tr>
+                <td align="left">
+                    <h4><b>Datos del Afectado</b></h4>
+                </td>
+            </tr>
+        </table>
+        <form name="myForm">
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="tipoidentificacion">Tipo de Identificación <font COLOR="red">*</font>
+                            :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.idTipoIdentificacion" style="text-transform: uppercase;"
+                            id="tipoidentificacion">
+                            <option *ngFor="let fila of selectTipoIdentificacion" value="{{fila.idTipoIdentificacion}}">
+                                {{fila.descripcion}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="numeroidentificacion">Número Identificación <font COLOR="red">*
+                            </font>
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.numeroIdentificacion" class="form-control" id="numeroidentificacion"
+                            placeholder="Ingrese el número de identificación" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+
+           
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="digitoverificacion">Dígito Verificación <font COLOR="red">*
+                            </font>
+                            :</label>
+                        <input required type="number" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.digitoVerificacion" class="form-control" id="digitoverificacion"
+                             style="text-transform: uppercase;" maxlength="1">
+                    </div>
+                </div>
+              
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="primernombre">Primer Nombre <font COLOR="red">*</font>
+                            :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.primerNombre" class="form-control" id="primernombre"
+                            placeholder="Ingrese el Primer Nombre" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="segundonombre">Segundo Nombre 
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.segundoNombre" class="form-control" id="segundonombre"
+                            placeholder="Ingrese el Segundo Nombre" style="text-transform: uppercase;">
+                    </div>
+                </div>
+
+
+           
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="primerapellido">Primer Apellido <font COLOR="red">*</font>
+                            :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.primerApellido" class="form-control" id="primerapellido"
+                            placeholder="Ingrese el Primer Apellido" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="segundoapellido">Segundo Apellido 
+                            :</label>
+                        <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.segundoApellido" class="form-control" id="segundoapellido"
+                            placeholder="Ingrese el Segundo Apellido" style="text-transform: uppercase;">
+                    </div>
+                </div>
+              
+            </div>
+
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="localidad">Localidad  :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.idLocalidad" style="text-transform: uppercase;" id="localidad" (change)="CargarUPZAfectado(afectado.idLocalidad.toString())">
+                            <option *ngFor="let fila of selectLocalidad" value="{{fila.idLocalidad}}" >
+                                {{fila.descripcionLocalidad}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="upz">UPZ  :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.idUpz" style="text-transform: uppercase;" id="upz" (change)="CargarBarrioAfectado(afectado.idUpz.toString())">
+                            <option *ngFor="let fila of selectUPZ" value="{{fila.idUpz}}" >
+                                {{fila.descripcionUpz}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="barrio">Barrio  :</label>
+                        <select required class="form-control" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.idbarrio" style="text-transform: uppercase;" id="barrio">
+                            <option *ngFor="let fila of selectBarrio" value="{{fila.idbarrio}}" >
+                                {{fila.descripcionBarrio}}
+                            </option>
+
+
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="telefono1">Teléfono 1 :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.telefono1" class="form-control" id="telefono1"
+                            placeholder="Ingrese el Teléfono 1" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="telefono2">Teléfono 2 :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.telefono2" class="form-control" id="telefono2"
+                            placeholder="Ingrese el Teléfono 2" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="labeld" for="correoelectronico">Correo Electrónico :</label>
+                            <input required type="text" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="afectado.correoElectronico" class="form-control" id="correoelectronico"
+                            placeholder="Ingrese el Correo Electrónico" style="text-transform: uppercase;">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <table width="100%">
+                   
+                    <tr>
+                      <td align="left" >
+                        <button class="btn btn-info active" (click)="confirmarGrabacionAfectado()" 
+                          style="padding-left: 20px; padding-right: 20px; ">Guardar Datos del Afectado</button>
                       </td>
                     </tr>
                   </table>

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { environment } from '../environments/environment';
-import { PersonaQuejoso } from '../models/parametricas.model';
+
+import { PersonaQuejoso, PersonaAfectado } from '../models/personas.model';
 
 
 @Injectable({
@@ -26,4 +27,8 @@ export class PersonasService {
         return this.httpClient.post<any>(this.url + '/personas/addPersona?token=' + this.token, data);
     }
 
+    //Persona Afectado
+    addPersonaAfectado(data: PersonaAfectado): any {
+        return this.httpClient.post<any>(this.url + '/personas/addPersona?token=' + this.token, data);
+    }
 }

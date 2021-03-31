@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Barrio, EntidadRemitente, Localidad, PersonaAfectado, PersonaQuejoso, Publicas, Queja, TipoIdentificacion, TipoRecepcionQueja, TipoSolicitud, UPZ } from '../../models/parametricas.model';
+import { Barrio, EntidadRemitente, Localidad, Publicas, Queja, TipoIdentificacion, TipoRecepcionQueja, TipoSolicitud, UPZ } from '../../models/parametricas.model';
+import { PersonaQuejoso, PersonaAfectado } from '../../models/personas.model';
+
 import { ParametricasService } from '../../services/parametricas.service';
 import { PersonasService } from '../../services/personas.service';
 
@@ -14,7 +16,7 @@ export class RecepcionpqrsComponent implements OnInit {
 
   queja: Queja = new Queja();
   quejoso: PersonaQuejoso = new PersonaQuejoso();
-
+  afectado: PersonaAfectado = new PersonaAfectado();
   ValorServicio: any;
   selectTipoSolicitud: Array<TipoSolicitud>;
   selectTipoIdentificacion: Array<TipoIdentificacion>;
@@ -35,23 +37,18 @@ export class RecepcionpqrsComponent implements OnInit {
 
   ngOnInit() {
 
+    //Datos de la Queja
     this.GetListaTipoSolicitud();
     this.GetListaEntidadRemitente();
     this.GetListaTipoRecepcionQueja();
-    //    this.GetListaPersonaQuejoso();
-    //   this.GetListaPersonaAfectado();
-    //Datos para el Quejoso   
-    this.GetListaTipoIdentificacion();
-    this.GetListaLocalidad();
-  }
 
-  CargarUPZ(idlocalidad: string) {
-    this.GetListaUPZ(Number(idlocalidad));
+    //Datos para el Quejoso  
+    this.GetListaTipoIdentificacionQuejoso();
+    this.GetListaLocalidadQuejoso();
 
-  }
-
-  CargarBarrio(idUpz: string) {
-    this.GetListaBarrio(Number(idUpz));
+    //Datos para el Afectado
+    this.GetListaTipoIdentificacionAfectado();
+    this.GetListaLocalidadAfectado();
 
   }
 
@@ -70,7 +67,7 @@ export class RecepcionpqrsComponent implements OnInit {
       this.selectTipoSolicitud.push(objtiposolicitud);
 
 
-      this.queja.idQueja = 0;
+      //this.queja.idQueja = 0;
     }
     catch (error) {
       console.error('[error en GetListaTipoSolicitud] : ' + error);
@@ -93,7 +90,7 @@ export class RecepcionpqrsComponent implements OnInit {
       this.selectEntidadRemitente.push(objentidadremitente);
 
 
-      this.queja.idEntidadRemitente = 0;
+      //this.queja.idEntidadRemitente = 0;
     }
     catch (error) {
       console.error('[error en GetListaEntidad] : ' + error);
@@ -115,7 +112,7 @@ export class RecepcionpqrsComponent implements OnInit {
       this.selectTipoRecepcionQueja.push(objtiporecepcionqueja);
 
 
-      this.queja.idTipoRecepcionQueja = 0;
+      //this.queja.idTipoRecepcionQueja = 0;
     }
     catch (error) {
       console.error('[error en GetListaEntidad] : ' + error);
@@ -169,11 +166,33 @@ export class RecepcionpqrsComponent implements OnInit {
   */
 
 
+  CargarUPZQuejoso(idlocalidad: string) {
+    this.GetListaUPZQuejoso(Number(idlocalidad));
+
+  }
+
+  CargarUPZAfectado(idlocalidad: string) {
+    this.GetListaUPZAfectado(Number(idlocalidad));
+
+  }
+
+  CargarBarrioQuejoso(idUpz: string) {
+    this.GetListaBarrioQuejoso(Number(idUpz));
+
+  }
+  CargarBarrioAfectado(idUpz: string) {
+    this.GetListaBarrioAfectado(Number(idUpz));
+  }
+
+
+
+
+
   GetListaTipoIdentificacionResult(): any {
     return this.parametricasservice.GetListaTipoIdentificacion().toPromise();
   }
 
-  async GetListaTipoIdentificacion() {
+  async GetListaTipoIdentificacionQuejoso() {
     try {
       this.ValorServicio = await this.GetListaTipoIdentificacionResult();
       this.selectTipoIdentificacion = this.ValorServicio.Result.Lista;
@@ -181,9 +200,22 @@ export class RecepcionpqrsComponent implements OnInit {
       objtipoidentificacion.idTipoIdentificacion = 0;
       objtipoidentificacion.descripcion = "-- Seleccione el Tipo de Identificación --";
       this.selectTipoIdentificacion.push(objtipoidentificacion);
-
-
       this.quejoso.idTipoIdentificacion = '';
+    }
+    catch (error) {
+      console.error('[error en GetListaTipoIdentificacion] : ' + error);
+    }
+  }
+
+  async GetListaTipoIdentificacionAfectado() {
+    try {
+      this.ValorServicio = await this.GetListaTipoIdentificacionResult();
+      this.selectTipoIdentificacion = this.ValorServicio.Result.Lista;
+      var objtipoidentificacion: TipoIdentificacion = new TipoIdentificacion();
+      objtipoidentificacion.idTipoIdentificacion = 0;
+      objtipoidentificacion.descripcion = "-- Seleccione el Tipo de Identificación --";
+      this.selectTipoIdentificacion.push(objtipoidentificacion);
+      this.afectado.idTipoIdentificacion = '';
     }
     catch (error) {
       console.error('[error en GetListaTipoIdentificacion] : ' + error);
@@ -197,7 +229,7 @@ export class RecepcionpqrsComponent implements OnInit {
     return this.parametricasservice.GetListaLocalidad().toPromise();
   }
 
-  async GetListaLocalidad() {
+  async GetListaLocalidadQuejoso() {
     try {
       this.ValorServicio = await this.GetListaLocalidadResult();
       this.selectLocalidad = this.ValorServicio.Result.Lista;
@@ -205,9 +237,22 @@ export class RecepcionpqrsComponent implements OnInit {
       objLocalidad.idLocalidad = 0;
       objLocalidad.descripcionLocalidad = "-- Seleccione la Localidad --";
       this.selectLocalidad.push(objLocalidad);
-
-
       this.quejoso.idLocalidad = 0;
+    }
+    catch (error) {
+      console.error('[error en GetListaLocalidad] : ' + error);
+    }
+  }
+
+  async GetListaLocalidadAfectado() {
+    try {
+      this.ValorServicio = await this.GetListaLocalidadResult();
+      this.selectLocalidad = this.ValorServicio.Result.Lista;
+      var objLocalidad: Localidad = new Localidad();
+      objLocalidad.idLocalidad = 0;
+      objLocalidad.descripcionLocalidad = "-- Seleccione la Localidad --";
+      this.selectLocalidad.push(objLocalidad);
+      this.afectado.idLocalidad = 0;
     }
     catch (error) {
       console.error('[error en GetListaLocalidad] : ' + error);
@@ -220,7 +265,7 @@ export class RecepcionpqrsComponent implements OnInit {
     return this.parametricasservice.GetListaUPZ(idlocalidad).toPromise();
   }
 
-  async GetListaUPZ(idlocalidad: number) {
+  async GetListaUPZQuejoso(idlocalidad: number) {
     try {
       debugger;
       this.ValorServicio = await this.GetListaUPZResult(idlocalidad);
@@ -229,8 +274,6 @@ export class RecepcionpqrsComponent implements OnInit {
       objUPZ.idUpz = 0;
       objUPZ.descripcionUpz = "-- Seleccione la UPZ --";
       this.selectUPZ.push(objUPZ);
-
-
       this.quejoso.idUpz = 0;
     }
     catch (error) {
@@ -238,12 +281,27 @@ export class RecepcionpqrsComponent implements OnInit {
     }
   }
 
+  async GetListaUPZAfectado(idlocalidad: number) {
+    try {
+      debugger;
+      this.ValorServicio = await this.GetListaUPZResult(idlocalidad);
+      this.selectUPZ = this.ValorServicio.Result.Lista;
+      var objUPZ: UPZ = new UPZ();
+      objUPZ.idUpz = 0;
+      objUPZ.descripcionUpz = "-- Seleccione la UPZ --";
+      this.selectUPZ.push(objUPZ);
+      this.afectado.idUpz = 0;
+    }
+    catch (error) {
+      console.error('[error en GetListaUPZ] : ' + error);
+    }
+  }
 
   GetListaBarrioResult(idUpz: number): any {
     return this.parametricasservice.GetListaBarrio(idUpz).toPromise();
   }
 
-  async GetListaBarrio(idUpz: number) {
+  async GetListaBarrioQuejoso(idUpz: number) {
     try {
       debugger;
       this.ValorServicio = await this.GetListaBarrioResult(idUpz);
@@ -252,8 +310,6 @@ export class RecepcionpqrsComponent implements OnInit {
       objBarrio.idBarrio = 0;
       objBarrio.descripcionBarrio = "-- Seleccione el Barrio --";
       this.selectBarrio.push(objBarrio);
-
-
       this.quejoso.idBarrio = 0;
     }
     catch (error) {
@@ -261,7 +317,21 @@ export class RecepcionpqrsComponent implements OnInit {
     }
   }
 
-
+  async GetListaBarrioAfectado(idUpz: number) {
+    try {
+      debugger;
+      this.ValorServicio = await this.GetListaBarrioResult(idUpz);
+      this.selectBarrio = this.ValorServicio.Result.Lista;
+      var objBarrio: Barrio = new Barrio();
+      objBarrio.idBarrio = 0;
+      objBarrio.descripcionBarrio = "-- Seleccione el Barrio --";
+      this.selectBarrio.push(objBarrio);
+      this.afectado.idBarrio = 0;
+    }
+    catch (error) {
+      console.error('[error en GetListaBarrio] : ' + error);
+    }
+  }
 
   confirmarGrabacionQuejoso() {
     var r = confirm("¿Confirma grabación de datos del Quejoso ?");
@@ -273,7 +343,7 @@ export class RecepcionpqrsComponent implements OnInit {
   GrabarDatosQuejoso() {
     this.quejoso.usrCreado = this.publicas.loginUsuario;
     this.quejoso.usrModificado = this.publicas.loginUsuario;
-    
+
     this.personasservice.addPersonaQuejoso(this.quejoso).subscribe(result => {
 
       if (result.OperacionExitosa == true) {
@@ -288,11 +358,37 @@ export class RecepcionpqrsComponent implements OnInit {
         console.log(this.error.statusText);
         console.error('Error [formulario]');
         console.error(error);
-
-        // this.ErrorToast('Error al guardar el formulario de datos iniciales.')
       }
     );
   }
 
 
+  confirmarGrabacionAfectado() {
+    var r = confirm("¿Confirma grabación de datos del Afectado ?");
+    if (r == true) {
+      this.GrabarDatosAfectado();
+    }
+  }
+
+  GrabarDatosAfectado() {
+    this.afectado.usrCreado = this.publicas.loginUsuario;
+    this.afectado.usrModificado = this.publicas.loginUsuario;
+
+    this.personasservice.addPersonaAfectado(this.afectado).subscribe(result => {
+
+      if (result.OperacionExitosa == true) {
+        alert('Se ha grabado correctamente los datos del Afectado');
+      }
+      else {
+        alert('Se presentó un error al grabar el Dato del Afectado');
+      }
+    },
+      error => {
+        this.error = error;
+        console.log(this.error.statusText);
+        console.error('Error [formulario]');
+        console.error(error);
+      }
+    );
+  }
 }

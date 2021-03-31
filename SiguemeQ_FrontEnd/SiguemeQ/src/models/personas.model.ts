@@ -18,6 +18,8 @@ export class PersonaQuejoso {
     public telefono1: string;
     public telefono2: string;
     public correoElectronico : string;
+    public usrCreado : string;
+    public usrModificado : string;
 
 
 }
@@ -41,4 +43,7 @@ public idUpz : number;
 public telefono1: string;
 public telefono2: string;
 public correoElectronico : string;
+public usrCreado : string;
+public usrModificado : string;
 }
+
