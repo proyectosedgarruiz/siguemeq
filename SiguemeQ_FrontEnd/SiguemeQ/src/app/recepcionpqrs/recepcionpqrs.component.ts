@@ -19,14 +19,27 @@ export class RecepcionpqrsComponent implements OnInit {
   afectado: PersonaAfectado = new PersonaAfectado();
   ValorServicio: any;
   selectTipoSolicitud: Array<TipoSolicitud>;
-  selectTipoIdentificacion: Array<TipoIdentificacion>;
+
   selectEntidadRemitente: Array<EntidadRemitente>;
   selectTipoRecepcionQueja: Array<TipoRecepcionQueja>;
   selectPersonaQuejoso: Array<PersonaQuejoso>;
   selectPersonaAfectado: Array<PersonaAfectado>;
-  selectLocalidad: Array<Localidad>;
-  selectUPZ: Array<UPZ>;
-  selectBarrio: Array<Barrio>;
+
+  selectTipoIdentificacionQuejoso: Array<TipoIdentificacion>;
+  selectTipoIdentificacionAfectado: Array<TipoIdentificacion>;
+  
+  selectLocalidadQuejoso: Array<Localidad>;
+  selectUPZQuejoso: Array<UPZ>;
+  selectBarrioQuejoso: Array<Barrio>;
+
+  selectLocalidadAfectado: Array<Localidad>;
+  selectUPZAfectado: Array<UPZ>;
+  selectBarrioAfectado: Array<Barrio>;
+
+
+
+  quejosoafectado: string;
+  displaydatosafectado: boolean = false;
 
   error: any;
 
@@ -46,9 +59,6 @@ export class RecepcionpqrsComponent implements OnInit {
     this.GetListaTipoIdentificacionQuejoso();
     this.GetListaLocalidadQuejoso();
 
-    //Datos para el Afectado
-    this.GetListaTipoIdentificacionAfectado();
-    this.GetListaLocalidadAfectado();
 
   }
 
@@ -67,7 +77,7 @@ export class RecepcionpqrsComponent implements OnInit {
       this.selectTipoSolicitud.push(objtiposolicitud);
 
 
-      //this.queja.idQueja = 0;
+      this.queja.idTipoSolicitud = 0;
     }
     catch (error) {
       console.error('[error en GetListaTipoSolicitud] : ' + error);
@@ -90,7 +100,7 @@ export class RecepcionpqrsComponent implements OnInit {
       this.selectEntidadRemitente.push(objentidadremitente);
 
 
-      //this.queja.idEntidadRemitente = 0;
+      this.queja.idEntidadRemitente = 0;
     }
     catch (error) {
       console.error('[error en GetListaEntidad] : ' + error);
@@ -112,7 +122,7 @@ export class RecepcionpqrsComponent implements OnInit {
       this.selectTipoRecepcionQueja.push(objtiporecepcionqueja);
 
 
-      //this.queja.idTipoRecepcionQueja = 0;
+      this.queja.idTipoRecepcionQueja = 0;
     }
     catch (error) {
       console.error('[error en GetListaEntidad] : ' + error);
@@ -194,12 +204,13 @@ export class RecepcionpqrsComponent implements OnInit {
 
   async GetListaTipoIdentificacionQuejoso() {
     try {
+      debugger;
       this.ValorServicio = await this.GetListaTipoIdentificacionResult();
-      this.selectTipoIdentificacion = this.ValorServicio.Result.Lista;
+      this.selectTipoIdentificacionQuejoso = this.ValorServicio.Result.Lista;
       var objtipoidentificacion: TipoIdentificacion = new TipoIdentificacion();
-      objtipoidentificacion.idTipoIdentificacion = 0;
+      objtipoidentificacion.idTipoIdentificacion = '';
       objtipoidentificacion.descripcion = "-- Seleccione el Tipo de Identificación --";
-      this.selectTipoIdentificacion.push(objtipoidentificacion);
+      this.selectTipoIdentificacionQuejoso.push(objtipoidentificacion);
       this.quejoso.idTipoIdentificacion = '';
     }
     catch (error) {
@@ -210,11 +221,11 @@ export class RecepcionpqrsComponent implements OnInit {
   async GetListaTipoIdentificacionAfectado() {
     try {
       this.ValorServicio = await this.GetListaTipoIdentificacionResult();
-      this.selectTipoIdentificacion = this.ValorServicio.Result.Lista;
+      this.selectTipoIdentificacionAfectado = this.ValorServicio.Result.Lista;
       var objtipoidentificacion: TipoIdentificacion = new TipoIdentificacion();
-      objtipoidentificacion.idTipoIdentificacion = 0;
+      objtipoidentificacion.idTipoIdentificacion = '';
       objtipoidentificacion.descripcion = "-- Seleccione el Tipo de Identificación --";
-      this.selectTipoIdentificacion.push(objtipoidentificacion);
+      this.selectTipoIdentificacionAfectado.push(objtipoidentificacion);
       this.afectado.idTipoIdentificacion = '';
     }
     catch (error) {
@@ -232,11 +243,11 @@ export class RecepcionpqrsComponent implements OnInit {
   async GetListaLocalidadQuejoso() {
     try {
       this.ValorServicio = await this.GetListaLocalidadResult();
-      this.selectLocalidad = this.ValorServicio.Result.Lista;
+      this.selectLocalidadQuejoso = this.ValorServicio.Result.Lista;
       var objLocalidad: Localidad = new Localidad();
       objLocalidad.idLocalidad = 0;
       objLocalidad.descripcionLocalidad = "-- Seleccione la Localidad --";
-      this.selectLocalidad.push(objLocalidad);
+      this.selectLocalidadQuejoso.push(objLocalidad);
       this.quejoso.idLocalidad = 0;
     }
     catch (error) {
@@ -247,11 +258,11 @@ export class RecepcionpqrsComponent implements OnInit {
   async GetListaLocalidadAfectado() {
     try {
       this.ValorServicio = await this.GetListaLocalidadResult();
-      this.selectLocalidad = this.ValorServicio.Result.Lista;
+      this.selectLocalidadAfectado = this.ValorServicio.Result.Lista;
       var objLocalidad: Localidad = new Localidad();
       objLocalidad.idLocalidad = 0;
       objLocalidad.descripcionLocalidad = "-- Seleccione la Localidad --";
-      this.selectLocalidad.push(objLocalidad);
+      this.selectLocalidadAfectado.push(objLocalidad);
       this.afectado.idLocalidad = 0;
     }
     catch (error) {
@@ -269,11 +280,11 @@ export class RecepcionpqrsComponent implements OnInit {
     try {
       debugger;
       this.ValorServicio = await this.GetListaUPZResult(idlocalidad);
-      this.selectUPZ = this.ValorServicio.Result.Lista;
+      this.selectUPZQuejoso = this.ValorServicio.Result.Lista;
       var objUPZ: UPZ = new UPZ();
       objUPZ.idUpz = 0;
       objUPZ.descripcionUpz = "-- Seleccione la UPZ --";
-      this.selectUPZ.push(objUPZ);
+      this.selectUPZQuejoso.push(objUPZ);
       this.quejoso.idUpz = 0;
     }
     catch (error) {
@@ -285,11 +296,11 @@ export class RecepcionpqrsComponent implements OnInit {
     try {
       debugger;
       this.ValorServicio = await this.GetListaUPZResult(idlocalidad);
-      this.selectUPZ = this.ValorServicio.Result.Lista;
+      this.selectUPZAfectado = this.ValorServicio.Result.Lista;
       var objUPZ: UPZ = new UPZ();
       objUPZ.idUpz = 0;
       objUPZ.descripcionUpz = "-- Seleccione la UPZ --";
-      this.selectUPZ.push(objUPZ);
+      this.selectUPZAfectado.push(objUPZ);
       this.afectado.idUpz = 0;
     }
     catch (error) {
@@ -305,11 +316,11 @@ export class RecepcionpqrsComponent implements OnInit {
     try {
       debugger;
       this.ValorServicio = await this.GetListaBarrioResult(idUpz);
-      this.selectBarrio = this.ValorServicio.Result.Lista;
+      this.selectBarrioQuejoso = this.ValorServicio.Result.Lista;
       var objBarrio: Barrio = new Barrio();
       objBarrio.idBarrio = 0;
       objBarrio.descripcionBarrio = "-- Seleccione el Barrio --";
-      this.selectBarrio.push(objBarrio);
+      this.selectBarrioQuejoso.push(objBarrio);
       this.quejoso.idBarrio = 0;
     }
     catch (error) {
@@ -321,11 +332,11 @@ export class RecepcionpqrsComponent implements OnInit {
     try {
       debugger;
       this.ValorServicio = await this.GetListaBarrioResult(idUpz);
-      this.selectBarrio = this.ValorServicio.Result.Lista;
+      this.selectBarrioAfectado = this.ValorServicio.Result.Lista;
       var objBarrio: Barrio = new Barrio();
       objBarrio.idBarrio = 0;
       objBarrio.descripcionBarrio = "-- Seleccione el Barrio --";
-      this.selectBarrio.push(objBarrio);
+      this.selectBarrioAfectado.push(objBarrio);
       this.afectado.idBarrio = 0;
     }
     catch (error) {
@@ -390,5 +401,23 @@ export class RecepcionpqrsComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+
+
+  cargardatosafectadoquejoso(estado: Boolean) {
+    debugger;
+    this.afectado = new PersonaAfectado();
+    //Datos para el Afectado
+    this.GetListaTipoIdentificacionAfectado();
+    this.GetListaLocalidadAfectado();
+
+    if (estado === true) //El afectado es el mismo quejoso
+    {
+      this.afectado = this.quejoso;
+      this.GetListaUPZAfectado(this.afectado.idLocalidad);
+      this.GetListaBarrioAfectado(this.afectado.idUpz);
+    }
+    this.displaydatosafectado = true;
   }
 }

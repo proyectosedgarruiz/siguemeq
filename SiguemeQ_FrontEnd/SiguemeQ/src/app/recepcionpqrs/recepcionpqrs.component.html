@@ -150,7 +150,7 @@
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="quejoso.idTipoIdentificacion" style="text-transform: uppercase;"
                             id="tipoidentificacion">
-                            <option *ngFor="let fila of selectTipoIdentificacion" value="{{fila.idTipoIdentificacion}}">
+                            <option *ngFor="let fila of selectTipoIdentificacionQuejoso" value="{{fila.idTipoIdentificacion}}">
                                 {{fila.descripcion}}
                             </option>
 
@@ -234,7 +234,7 @@
                         <label class="labeld" for="localidad">Localidad  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="quejoso.idLocalidad" style="text-transform: uppercase;" id="localidad" (change)="CargarUPZQuejoso(quejoso.idLocalidad.toString())">
-                            <option *ngFor="let fila of selectLocalidad" value="{{fila.idLocalidad}}" >
+                            <option *ngFor="let fila of selectLocalidadQuejoso" value="{{fila.idLocalidad}}" >
                                 {{fila.descripcionLocalidad}}
                             </option>
 
@@ -248,7 +248,7 @@
                         <label class="labeld" for="upz">UPZ  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="quejoso.idUpz" style="text-transform: uppercase;" id="upz" (change)="CargarBarrioQuejoso(quejoso.idUpz.toString())">
-                            <option *ngFor="let fila of selectUPZ" value="{{fila.idUpz}}" >
+                            <option *ngFor="let fila of selectUPZQuejoso" value="{{fila.idUpz}}" >
                                 {{fila.descripcionUpz}}
                             </option>
 
@@ -262,7 +262,7 @@
                         <label class="labeld" for="barrio">Barrio  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="quejoso.idbarrio" style="text-transform: uppercase;" id="barrio">
-                            <option *ngFor="let fila of selectBarrio" value="{{fila.idbarrio}}" >
+                            <option *ngFor="let fila of selectBarrioQuejoso" value="{{fila.idbarrio}}" >
                                 {{fila.descripcionBarrio}}
                             </option>
 
@@ -325,6 +325,30 @@
             </tr>
         </table>
         <form name="myForm">
+
+
+            <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <label class="labeld" for="quejosoafectado">¿El Afectado es el mismo Quejoso? <font COLOR="red">*</font> :</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <div class="form-group">
+                    <input type="radio" value="SI" name="quejosoafectado" [(ngModel)]="quejosoafectado" id="quejosoafectadosi"
+                      (change)="cargardatosafectadoquejoso(true); displaydatosafectado=true;"
+                      style="background-color:white; color:black; font-weight: bold; width: 20px; height: 20px;"> SI
+                    <input type="radio" value="NO" name="quejosoafectado" [(ngModel)]="quejosoafectado" id="quejosoafectadono"
+                      (change)="cargardatosafectadoquejoso(false); displaydatosafectado=true; "
+                      style="background-color:white; color:black; font-weight: bold; width: 20px; height: 20px;"> NO
+                  </div>
+                </div>
+              </div>
+
+
+              <div *ngIf="displaydatosafectado">
             <div class="form-row">
                 <div class="col">
                     <div class="form-group">
@@ -333,7 +357,7 @@
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="afectado.idTipoIdentificacion" style="text-transform: uppercase;"
                             id="tipoidentificacion">
-                            <option *ngFor="let fila of selectTipoIdentificacion" value="{{fila.idTipoIdentificacion}}">
+                            <option *ngFor="let fila of selectTipoIdentificacionAfectado" value="{{fila.idTipoIdentificacion}}">
                                 {{fila.descripcion}}
                             </option>
 
@@ -417,7 +441,7 @@
                         <label class="labeld" for="localidad">Localidad  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="afectado.idLocalidad" style="text-transform: uppercase;" id="localidad" (change)="CargarUPZAfectado(afectado.idLocalidad.toString())">
-                            <option *ngFor="let fila of selectLocalidad" value="{{fila.idLocalidad}}" >
+                            <option *ngFor="let fila of selectLocalidadAfectado" value="{{fila.idLocalidad}}" >
                                 {{fila.descripcionLocalidad}}
                             </option>
 
@@ -431,7 +455,7 @@
                         <label class="labeld" for="upz">UPZ  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="afectado.idUpz" style="text-transform: uppercase;" id="upz" (change)="CargarBarrioAfectado(afectado.idUpz.toString())">
-                            <option *ngFor="let fila of selectUPZ" value="{{fila.idUpz}}" >
+                            <option *ngFor="let fila of selectUPZAfectado" value="{{fila.idUpz}}" >
                                 {{fila.descripcionUpz}}
                             </option>
 
@@ -445,7 +469,7 @@
                         <label class="labeld" for="barrio">Barrio  :</label>
                         <select required class="form-control" [ngModelOptions]="{standalone: true}"
                             [(ngModel)]="afectado.idbarrio" style="text-transform: uppercase;" id="barrio">
-                            <option *ngFor="let fila of selectBarrio" value="{{fila.idbarrio}}" >
+                            <option *ngFor="let fila of selectBarrioAfectado" value="{{fila.idbarrio}}" >
                                 {{fila.descripcionBarrio}}
                             </option>
 
@@ -496,6 +520,8 @@
                   </table>
             </div>
                 
+
+        </div>
         </form>
     </div>
 

@@ -25,7 +25,7 @@ export class TipoRecepcionQueja {
 
 
 export class TipoIdentificacion {
-        public idTipoIdentificacion: number;
+        public idTipoIdentificacion: string;
         public descripcion: string;
 
 }
